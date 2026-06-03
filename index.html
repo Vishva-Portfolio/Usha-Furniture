@@ -855,244 +855,41 @@
   </div>
 </div>
 
-<!-- ════════ PRODUCTS ════════ -->
+
+<!-- ════════ CATALOGUE SECTION (Dynamic - Firebase powered) ════════ -->
 <section class="section" id="products">
   <div class="prod-top rv">
     <div>
       <div class="sec-eyebrow"><div class="sec-eline"></div><div class="sec-etxt">Our Catalogue</div></div>
       <div class="sec-title">Products We <span class="gold-word">Carry</span></div>
     </div>
-    <div class="filter-row">
-      <button class="filt on" onclick="fp('all',this)"><span class="filt-icon">✦</span> All Products</button>
-      <button class="filt" onclick="fp('chairs',this)"><span class="filt-icon">🪑</span> Chairs</button>
-      <button class="filt" onclick="fp('buckets',this)"><span class="filt-icon">🪞</span> Stools</button>
-      <button class="filt" onclick="fp('household',this)"><span class="filt-icon">🪵</span> Teapoy &amp; Dining</button>
-    </div>
   </div>
 
-  <div class="pgrid" id="pg">
-    <!-- To add your own image, replace the emoji div with:
-         <img src="images/chairs/your-image.jpg" alt="Product Name"> -->
+  <!-- LEVEL 1: Catalogue tabs (Furniture / Electronics) -->
+  <div id="catalogue-tabs" style="display:flex;gap:12px;margin-bottom:32px;flex-wrap:wrap;">
+    <div style="text-align:center;padding:24px;color:rgba(245,237,228,0.3);width:100%;" id="cat-loading-msg">Loading catalogue…</div>
+  </div>
 
-    <div class="pcard rv" data-cat="chairs">
-      <div class="pvisual"><div class="pvisual-emoji">
-        <img src="images/chairs/Ignish.png" alt="Product Name">
-      </div><span class="ptag">Popular</span></div>
-      <div class="pbody"><div class="pcat">Best Seller</div><div class="pname">Ignish</div><div class="pdesc">It blends modern style with everyday durability, making it a perfect seating solution for homes, offices, and outdoor spaces.</div></div>
+  <!-- LEVEL 2: Categories grid -->
+  <div id="categories-row" style="display:none;margin-bottom:32px;">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
+      <button onclick="goBackToCatalogues()" style="background:rgba(255,255,255,0.05);border:1px solid rgba(201,149,106,0.2);color:rgba(201,149,106,0.7);border-radius:8px;padding:8px 14px;font-size:11px;font-weight:700;letter-spacing:1px;cursor:pointer;">← Back</button>
+      <div id="breadcrumb-cat" style="font-size:13px;color:rgba(245,237,228,0.5);"></div>
     </div>
-    <div class="pcard rv" data-cat="chairs">
-      <div class="pvisual"><div class="pvisual-emoji">
-        <img src="images/chairs/Ispin Ultra.png" alt="Product Name">
-      </div></div>
-      <div class="pbody"><div class="pname">Ispine Ultra</div><div class="pdesc">The Chair brings together strong build quality & modern design. Its matte finish adds a premium touch.</div></div>
-    </div>
-    <div class="pcard rv d1" data-cat="chairs">
-      <div class="pvisual"><div class="pvisual-emoji">
-        <img src="images/chairs/Ratan.png" alt="Product Name">
-      </div></div>
-      <div class="pbody"><div class="pcat"></div><div class="pname">Ratan</div><div class="pdesc">A lightweight, durable and user-friendly seating solution designed for everyday comfort. </div></div>
-    </div>
-    <div class="pcard rv d2" data-cat="chairs">
-      <div class="pvisual"><div class="pvisual-emoji">
-         <img src="images/chairs/Casper.png" alt="Product Name">
-      </div></div>
-      <div class="pbody"><div class="pcat"></div><div class="pname">Casper</div><div class="pdesc">It is built for those who prefer extra strength, extra comfort, and extra space.</div></div>
-    </div>
-    <div class="pcard rv" data-cat="chairs">
-      <div class="pvisual"><div class="pvisual-emoji">
-        <img src="images/chairs/Ispider.png" alt="Product Name">
-       </div></div> 
-      <div class="pbody"><div class="pcat"></div><div class="pname">Ispider</div><div class="pdesc">Whether working, studying, or relaxing, this chair keeps you comfortable throughout the day.</div></div>
-    </div>
-    <div class="pcard rv" data-cat="chairs">
-      <div class="pvisual"><div class="pvisual-emoji">
-        <img src="images/chairs/Ikea.png" alt="Product Name">
-       </div></div> 
-      <div class="pbody"><div class="pcat"></div><div class="pname">Ikea</div><div class="pdesc">Ideal for everyday use, it brings comfort, stability, and long-term durability to any seating setup.</div></div>
-    </div>
-    <div class="pcard rv d1" data-cat="chairs">
-      <div class="pvisual"><div class="pvisual-emoji">
-        <img src="images/chairs/Ismart.png" alt="Product Name">
-      </div></div>
-      <div class="pbody"><div class="pcat"></div><div class="pname">Ismart</div><div class="pdesc">It is built for those who prefer extra strength, extra comfort, and extra space.</div></div>
-    </div>
-    <div class="pcard rv d1" data-cat="chairs">
-      <div class="pvisual"><div class="pvisual-emoji">
-        <img src="images/chairs/Iclass.png" alt="Product Name">
-      </div></div>
-      <div class="pbody"><div class="pcat"></div><div class="pname">IClass</div><div class="pdesc">It is built for those who prefer extra strength, extra comfort, and extra space.</div></div>
-    </div>
-    <div class="pcard rv" data-cat="chairs">
-      <div class="pvisual"><div class="pvisual-emoji">
-        <img src="images/chairs/Icomfort.png" alt="Product Name">
-       </div></div> 
-      <div class="pbody"><div class="pcat"></div><div class="pname">Icomfort</div><div class="pdesc">A perfect blend of comfort and durability with its deep–relaxing design and strong molded body.</div></div>
-    </div>
-    <div class="pcard rv" data-cat="chairs">
-      <div class="pvisual"><div class="pvisual-emoji">
-        <img src="images/chairs/Icon.png" alt="Product Name">
-       </div></div> 
-      <div class="pbody"><div class="pcat"></div><div class="pname">Icon</div><div class="pdesc">The Chair brings together strong build quality, modern design, and everyday comfort.</div></div>
-    </div>
-    <div class="pcard rv" data-cat="chairs">
-      <div class="pvisual"><div class="pvisual-emoji">
-        <img src="images/chairs/Avro 9998 matt.png" alt="Product Name">
-       </div></div> 
-      <div class="pbody"><div class="pcat"></div><div class="pname">Avro 9998 matt</div><div class="pdesc">The Chair brings together strong build quality, modern design, and everyday comfort. </div></div>
-    </div>
-        <div class="pcard rv" data-cat="chairs">
-      <div class="pvisual"><div class="pvisual-emoji">
-        <img src="images/chairs/Spine Chair.png" alt="Product Name">
-       </div></div> 
-      <div class="pbody"><div class="pcat"></div><div class="pname">Spine Chair</div><div class="pdesc">Experience comfort that truly supports you.</div></div>
-    </div>
-            <div class="pcard rv" data-cat="chairs">
-      <div class="pvisual"><div class="pvisual-emoji">
-        <img src="images/chairs/Mystic.png" alt="Product Name">
-       </div></div> 
-      <div class="pbody"><div class="pcat"></div><div class="pname">Mystic</div><div class="pdesc">It blends modern design with everyday comfort.</div></div>
-    </div> 
-            <div class="pcard rv" data-cat="chairs">
-      <div class="pvisual"><div class="pvisual-emoji">
-        <img src="images/chairs/Harmless.png" alt="Product Name">
-       </div></div> 
-      <div class="pbody"><div class="pcat"></div><div class="pname">Harmless Chair</div><div class="pdesc">A lightweight, durable and user-friendly seating solution designed for everyday comfort. </div></div>
-    </div> 
-            <div class="pcard rv" data-cat="chairs">
-      <div class="pvisual"><div class="pvisual-emoji">
-        <img src="images/chairs/Smilee.png" alt="Product Name">
-       </div></div> 
-      <div class="pbody"><div class="pcat"></div><div class="pname">Smilee Baby Chair</div><div class="pdesc">It designed to bring comfort, safety, and joy to every little one.</div></div>
-    </div>  
+    <div id="cat-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px;"></div>
+  </div>
 
-     <div class="pcard rv d1" data-cat="chairs">
-      <div class="pvisual"><div class="pvisual-emoji">
-        <img src="images/chairs/IKids (LB).png" alt="Product Name">
-      </div></div>
-      <div class="pbody"><div class="pcat"></div><div class="pname">IKids (L/B)</div><div class="pdesc">It is built for those who prefer extra strength, extra comfort, and extra space.</div></div>
+  <!-- LEVEL 3: Products grid -->
+  <div id="products-row" style="display:none;">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap;">
+      <button onclick="goBackToCategories()" style="background:rgba(255,255,255,0.05);border:1px solid rgba(201,149,106,0.2);color:rgba(201,149,106,0.7);border-radius:8px;padding:8px 14px;font-size:11px;font-weight:700;letter-spacing:1px;cursor:pointer;">← Back</button>
+      <div id="breadcrumb-prod" style="font-size:13px;color:rgba(245,237,228,0.5);"></div>
     </div>
-         <div class="pcard rv d1" data-cat="chairs">
-      <div class="pvisual"><div class="pvisual-emoji">
-        <img src="images/chairs/IKids (HB).png" alt="Product Name">
-      </div></div>
-      <div class="pbody"><div class="pcat"></div><div class="pname">IKids (H/B)</div><div class="pdesc">It is built for those who prefer extra strength, extra comfort, and extra space.</div></div>
-    </div>
-                <div class="pcard rv" data-cat="chairs">
-      <div class="pvisual"><div class="pvisual-emoji">
-        <img src="images/chairs/Lotus - Baby Chair.png" alt="Product Name">
-       </div></div> 
-      <div class="pbody"><div class="pcat"></div><div class="pname">Lotus - Baby Chair</div><div class="pdesc">It brings together strength, comfort, and a sleek modern look!</div></div>
-    </div>              <div class="pcard rv" data-cat="chairs">
-      <div class="pvisual"><div class="pvisual-emoji">
-        <img src="images/chairs/Baby Chair Delux.png" alt="Product Name">
-       </div></div> 
-      <div class="pbody"><div class="pcat"></div><div class="pname">Baby Chair Delux</div><div class="pdesc">It brings elegance and durability together with its beautifully carved design and strong build.</div></div>
-    </div>   
-    
-        <div class="pcard rv d2" data-cat="buckets">
-      <div class="pvisual"><div class="pvisual-emoji">
-        <img src="images/Stools/Idol.png" alt="Product Name">
-      </div></div>
-      <div class="pbody"><div class="pcat"></div><div class="pname">Idol</div><div class="pdesc">It is designed for maximum convenience and versatility. With a strong dual-side structure</div></div>
-    </div>
-
-        <div class="pcard rv d2" data-cat="buckets">
-      <div class="pvisual"><div class="pvisual-emoji">
-        <img src="images/Stools/Imax.png" alt="Product Name">
-      </div></div>
-      <div class="pbody"><div class="pcat"></div><div class="pname">Imax</div><div class="pdesc">It is designed for maximum convenience and versatility. With a strong dual-side structure</div></div>
-    </div>
-
-        <div class="pcard rv d2" data-cat="buckets">
-      <div class="pvisual"><div class="pvisual-emoji">
-        <img src="images/Stools/IStool.png" alt="Product Name">
-      </div></div>
-      <div class="pbody"><div class="pcat"></div><div class="pname">IStool</div><div class="pdesc">It is designed for maximum convenience and versatility. With a strong dual-side structure</div></div>
-    </div>
-
-
-    <div class="pcard rv d2" data-cat="buckets">
-      <div class="pvisual"><div class="pvisual-emoji">
-        <img src="images/Stools/Double side stool.png" alt="Product Name">
-      </div></div>
-      <div class="pbody"><div class="pcat"></div><div class="pname">Double side stool</div><div class="pdesc">It is designed for maximum convenience and versatility. With a strong dual-side structure</div></div>
-    </div>
-    <div class="pcard rv" data-cat="buckets">
-      <div class="pvisual"><div class="pvisual-emoji">
-        <img src="images/Stools/Maestro.png" alt="Product Name">
-      </div></div>
-      <div class="pbody"><div class="pcat"></div><div class="pname">Maestro 10" / 20"</div><div class="pdesc">The Stools bring strength, simplicity, and everyday convenience together. </div></div>
-    </div>
-    <div class="pcard rv d1" data-cat="buckets">
-      <div class="pvisual"><div class="pvisual-emoji">
-        <img src="images/Stools/Activa 18.png" alt="Product Name">
-      </div></div>
-      <div class="pbody"><div class="pcat"></div><div class="pname">Activa 18"</div><div class="pdesc">The Activa 18" Stool is built for strength, stability, and everyday comfort.</div></div>
-    </div>
-    <div class="pcard rv d1" data-cat="buckets">
-      <div class="pvisual"><div class="pvisual-emoji">
-        <img src="images/Stools/Rock Stool.png" alt="Product Name">
-      </div></div>
-      <div class="pbody"><div class="pcat"></div><div class="pname">Rock Stool</div><div class="pdesc">Its wide, curved seating design provides excellent support.</div></div>
-    </div>    <div class="pcard rv d1" data-cat="buckets">
-      <div class="pvisual"><div class="pvisual-emoji">
-        <img src="images/Stools/Pulsar 21.png" alt="Product Name">
-      </div></div>
-      <div class="pbody"><div class="pcat"></div><div class="pname">Pulsar 21"</div><div class="pdesc"> It combines vibrant design with reliable strength.</div></div>
-    </div>    <div class="pcard rv d1" data-cat="buckets">
-      <div class="pvisual"><div class="pvisual-emoji">
-        <img src="images/Stools/Tip Top Stool.png" alt="Product Name">
-      </div></div>
-      <div class="pbody"><div class="pcat"></div><div class="pname">Tip Top Stool</div><div class="pdesc"> With its dual-tone finish and ventilated seat</div></div>
-    </div>    <div class="pcard rv d1" data-cat="buckets">
-      <div class="pvisual"><div class="pvisual-emoji">
-        <img src="images/Stools/Pleasure 6.png" alt="Product Name">
-      </div></div>
-      <div class="pbody"><div class="pcat"></div><div class="pname">Pleasure 6"</div><div class="pdesc">It is a compact, high-strength utility stand designed for everyday household.</div></div>
-    </div>    <div class="pcard rv d1" data-cat="buckets">
-      <div class="pvisual"><div class="pvisual-emoji">
-        <img src="images/Stools/Pleasure 10.png" alt="Product Name">
-      </div></div>
-      <div class="pbody"><div class="pcat"></div><div class="pname">Pleasure 10"</div><div class="pdesc">The Stool is compact, sturdy, and built for everyday convenience.</div></div>
-    </div>    <div class="pcard rv d1" data-cat="buckets">
-      <div class="pvisual"><div class="pvisual-emoji">
-        <img src="images/Stools/Patla Virgin.png" alt="Product Name">
-      </div></div>
-      <div class="pbody"><div class="pcat"></div><div class="pname">Patla Virgin</div><div class="pdesc">Its wide, curved seating design provides excellent support.</div></div>
-    </div>    <div class="pcard rv d1" data-cat="buckets">
-      <div class="pvisual"><div class="pvisual-emoji">
-        <img src="images/Stools/Patla Marble.png" alt="Product Name">
-      </div></div>
-      <div class="pbody"><div class="pcat"></div><div class="pname">Patla Marble</div><div class="pdesc">It is designed for comfort, durability, and everyday convenience.</div></div>
-    </div>    <div class="pcard rv d1" data-cat="buckets">
-      <div class="pvisual"><div class="pvisual-emoji">
-        <img src="images/Stools/Delux Samrat Patla.png" alt="Product Name">
-      </div></div>
-      <div class="pbody"><div class="pcat"></div><div class="pname">Delux Samrat Patla</div><div class="pdesc">It is designed with a stylish and slip-resistant build, making it perfect for home, kitchen, and daily use.</div></div>
-    </div>
- <div class="pcard rv d1" data-cat="buckets">
-      <div class="pvisual"><div class="pvisual-emoji">
-        <img src="images/Stools/Mini Stool.png" alt="Product Name">
-      </div></div>
-      <div class="pbody"><div class="pcat"></div><div class="pname">Mini Stool</div><div class="pdesc">Lightweight to carry yet durable enough to last.</div></div>
-    </div>
-     <div class="pcard rv d1" data-cat="buckets">
-      <div class="pvisual"><div class="pvisual-emoji">
-        <img src="images/Stools/Bath Stool.png" alt="Product Name">
-      </div></div>
-      <div class="pbody"><div class="pcat"></div><div class="pname">Bath Stool</div><div class="pdesc">t is a compact, high-strength utility stand designed for everyday household.</div></div>
-    </div>
-
-
-    
-    <div class="pcard rv d2" data-cat="household">
-      <div class="pvisual"><div class="pvisual-emoji">
-        <img src="images/Household/Swift Tea Table.png" alt="Product Name">
-      </div><span class="ptag">New</span></div>
-      <div class="pbody"><div class="pcat">Teapoy</div><div class="pname">Swift Tea Table</div><div class="pdesc">a stylish multi-purpose utility table designed for smooth movement and easy use.</div></div>
-    </div>
+    <div id="prod-filter-row" style="display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;"></div>
+    <div id="prod-grid" class="pgrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px;"></div>
   </div>
 </section>
+
 
 <!-- ════════ ABOUT ════════ -->
 <section class="section" id="about">
@@ -1171,7 +968,7 @@
           <div class="mappin">📍</div>
           <div class="mapname">Usha Furniture & Electronics</div>
           <div class="mapaddr">234, CSC, CSC Tower, N Car St, <br>Thiruchendur, Tamil Nadu - 628215</div> 
-          <a href="https://maps.google.com/?q=Naduvakuruchi,Sathankulam,Thoothukudi" target="_blank" class="mapbtn">🗺️ Open in Google Maps</a>
+          <a href="https://maps.app.goo.gl/WJgTWmDJe31X7FiC8?g_st=ic" target="_blank" class="mapbtn">🗺️ Open in Google Maps</a>
         </div>
       </div>
       <div class="contact-right-info">
@@ -1227,8 +1024,564 @@
   </div>
 </footer>
 
+
+<!-- ════════ ADMIN LOGIN MODAL ════════ -->
+<div id="adminLoginModal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.88);backdrop-filter:blur(14px);align-items:center;justify-content:center;">
+  <div style="background:linear-gradient(145deg,#1a0c10,#110608);border:1px solid rgba(201,149,106,0.3);border-radius:24px;padding:48px 40px;width:100%;max-width:420px;box-shadow:0 40px 100px rgba(0,0,0,0.7);position:relative;">
+    <button onclick="closeAdminLogin()" style="position:absolute;top:18px;right:20px;background:none;border:none;color:rgba(245,237,228,0.4);font-size:22px;cursor:pointer;">✕</button>
+    <div style="text-align:center;margin-bottom:32px;">
+      <div style="width:56px;height:56px;border-radius:50%;background:rgba(201,149,106,0.12);border:1px solid rgba(201,149,106,0.3);display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 16px;">🔐</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:#E8C9A0;margin-bottom:6px;">Admin Login</div>
+      <div style="font-size:11px;color:rgba(245,237,228,0.4);letter-spacing:2px;text-transform:uppercase;">Usha Furniture & Electronics</div>
+    </div>
+    <div id="adminLoginErr" style="display:none;background:rgba(139,26,46,0.2);border:1px solid rgba(139,26,46,0.4);border-radius:10px;padding:12px 16px;margin-bottom:20px;font-size:13px;color:#ff8a8a;text-align:center;"></div>
+    <div style="margin-bottom:18px;">
+      <label style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(201,149,106,0.8);display:block;margin-bottom:8px;">Email</label>
+      <input id="adminEmail" type="email" placeholder="admin@example.com" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(201,149,106,0.2);border-radius:10px;padding:13px 16px;color:#F5EDE4;font-size:14px;outline:none;" onfocus="this.style.borderColor='rgba(201,149,106,0.5)'" onblur="this.style.borderColor='rgba(201,149,106,0.2)'"/>
+    </div>
+    <div style="margin-bottom:28px;">
+      <label style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(201,149,106,0.8);display:block;margin-bottom:8px;">Password</label>
+      <input id="adminPass" type="password" placeholder="••••••••" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(201,149,106,0.2);border-radius:10px;padding:13px 16px;color:#F5EDE4;font-size:14px;outline:none;" onfocus="this.style.borderColor='rgba(201,149,106,0.5)'" onblur="this.style.borderColor='rgba(201,149,106,0.2)'" onkeydown="if(event.key==='Enter')doAdminLogin()"/>
+    </div>
+    <button onclick="doAdminLogin()" id="loginBtn" style="width:100%;background:linear-gradient(135deg,#7A4A2E,#C9956A);color:#0E080A;border:none;border-radius:10px;padding:14px;font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;cursor:pointer;">Login to Admin Panel</button>
+  </div>
+</div>
+
+<!-- ════════ ADMIN PANEL ════════ -->
+<div id="adminPanel" style="display:none;position:fixed;inset:0;z-index:10000;background:#0E080A;overflow-y:auto;">
+  <div style="min-height:100vh;">
+    <!-- Admin Navbar -->
+    <div style="background:linear-gradient(135deg,#160C0F,#1E1114);border-bottom:1px solid rgba(201,149,106,0.2);padding:0 28px;height:64px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 4px 24px rgba(0,0,0,0.5);">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="width:36px;height:36px;border-radius:50%;background:rgba(201,149,106,0.12);border:1px solid rgba(201,149,106,0.3);display:flex;align-items:center;justify-content:center;font-size:16px;">⚙️</div>
+        <div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:#E8C9A0;">Admin Panel</div>
+          <div style="font-size:9px;color:rgba(201,149,106,0.6);letter-spacing:2px;text-transform:uppercase;">Usha Furniture & Electronics</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px;">
+        <div id="adminUserLabel" style="font-size:12px;color:rgba(245,237,228,0.4);"></div>
+        <button onclick="adminLogout()" style="background:rgba(139,26,46,0.2);border:1px solid rgba(139,26,46,0.4);color:#ff8a8a;border-radius:8px;padding:9px 16px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">Logout</button>
+      </div>
+    </div>
+
+    <!-- Admin Body -->
+    <div style="padding:32px 28px;max-width:1100px;margin:0 auto;">
+      <!-- Tabs -->
+      <div style="display:flex;gap:8px;margin-bottom:32px;background:rgba(255,255,255,0.03);border:1px solid rgba(201,149,106,0.15);border-radius:14px;padding:5px;">
+        <button id="atab-catalogue" onclick="aTab('catalogue')" style="flex:1;padding:10px;border-radius:10px;border:none;background:linear-gradient(135deg,rgba(201,149,106,0.2),rgba(201,149,106,0.08));color:#E8C9A0;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">📂 Catalogues</button>
+        <button id="atab-category" onclick="aTab('category')" style="flex:1;padding:10px;border-radius:10px;border:none;background:transparent;color:rgba(245,237,228,0.4);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">🏷️ Categories</button>
+        <button id="atab-product" onclick="aTab('product')" style="flex:1;padding:10px;border-radius:10px;border:none;background:transparent;color:rgba(245,237,228,0.4);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">📦 Products</button>
+      </div>
+
+      <!-- ══ CATALOGUES TAB ══ -->
+      <div id="apanel-catalogue">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+          <div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:#E8C9A0;">Catalogues</div>
+            <div style="font-size:12px;color:rgba(245,237,228,0.4);margin-top:3px;">Top-level: e.g. "Furniture", "Electronics"</div>
+          </div>
+          <button onclick="openForm('catalogue')" style="background:linear-gradient(135deg,#7A4A2E,#C9956A);color:#0E080A;border:none;border-radius:10px;padding:11px 22px;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">➕ Add Catalogue</button>
+        </div>
+        <div id="form-catalogue" style="display:none;" class="admin-form">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:#E8C9A0;margin-bottom:18px;" id="form-catalogue-title">Add Catalogue</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+            <div><label class="flbl">Name</label><input id="fc-name" class="finput" placeholder="e.g. Furniture"/></div>
+            <div><label class="flbl">Icon (emoji)</label><input id="fc-icon" class="finput" placeholder="🪑"/></div>
+          </div>
+          <div style="margin-bottom:14px;"><label class="flbl">Cover Image (optional)</label><div class="dropzone" id="dz-catalogue" onclick="document.getElementById('fi-catalogue').click()"><div class="dz-inner" id="dzi-catalogue">🖼️ Click or drag image here<br><span style="font-size:11px;color:rgba(245,237,228,0.3);">JPG/PNG/WEBP max 1.5MB</span></div><img id="fp-catalogue" style="display:none;max-height:120px;border-radius:8px;margin:0 auto;"/></div><input id="fi-catalogue" type="file" accept="image/*" style="display:none;" onchange="prevImg(event,'catalogue')"/></div>
+          <div id="msg-catalogue" class="form-msg" style="display:none;"></div>
+          <div style="display:flex;gap:10px;"><button onclick="saveDoc('catalogue')" class="btn-save">Save</button><button onclick="closeForm('catalogue')" class="btn-cancel">Cancel</button></div>
+        </div>
+        <div id="list-catalogue" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;"></div>
+      </div>
+
+      <!-- ══ CATEGORIES TAB ══ -->
+      <div id="apanel-category" style="display:none;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+          <div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:#E8C9A0;">Categories</div>
+            <div style="font-size:12px;color:rgba(245,237,228,0.4);margin-top:3px;">Second level: e.g. "Sofa", "Bed" under Furniture</div>
+          </div>
+          <button onclick="openForm('category')" style="background:linear-gradient(135deg,#7A4A2E,#C9956A);color:#0E080A;border:none;border-radius:10px;padding:11px 22px;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">➕ Add Category</button>
+        </div>
+        <div id="form-category" style="display:none;" class="admin-form">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:#E8C9A0;margin-bottom:18px;" id="form-category-title">Add Category</div>
+          <div style="margin-bottom:14px;"><label class="flbl">Parent Catalogue</label><select id="fc2-cat" class="finput"><option value="">-- Select --</option></select></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+            <div><label class="flbl">Name</label><input id="fc2-name" class="finput" placeholder="e.g. Sofa"/></div>
+            <div><label class="flbl">Icon (emoji)</label><input id="fc2-icon" class="finput" placeholder="🛋️"/></div>
+          </div>
+          <div style="margin-bottom:14px;"><label class="flbl">Category Image (optional)</label><div class="dropzone" id="dz-category" onclick="document.getElementById('fi-category').click()"><div class="dz-inner" id="dzi-category">🖼️ Click or drag image here<br><span style="font-size:11px;color:rgba(245,237,228,0.3);">JPG/PNG/WEBP max 1.5MB</span></div><img id="fp-category" style="display:none;max-height:120px;border-radius:8px;margin:0 auto;"/></div><input id="fi-category" type="file" accept="image/*" style="display:none;" onchange="prevImg(event,'category')"/></div>
+          <div id="msg-category" class="form-msg" style="display:none;"></div>
+          <div style="display:flex;gap:10px;"><button onclick="saveDoc('category')" class="btn-save">Save</button><button onclick="closeForm('category')" class="btn-cancel">Cancel</button></div>
+        </div>
+        <div id="list-category" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;"></div>
+      </div>
+
+      <!-- ══ PRODUCTS TAB ══ -->
+      <div id="apanel-product" style="display:none;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+          <div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:#E8C9A0;">Products</div>
+            <div style="font-size:12px;color:rgba(245,237,228,0.4);margin-top:3px;">Third level: e.g. "Low End Sofa", "High End Sofa" inside Sofa</div>
+          </div>
+          <button onclick="openForm('product')" style="background:linear-gradient(135deg,#7A4A2E,#C9956A);color:#0E080A;border:none;border-radius:10px;padding:11px 22px;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">➕ Add Product</button>
+        </div>
+        <div id="form-product" style="display:none;" class="admin-form">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:#E8C9A0;margin-bottom:18px;" id="form-product-title">Add Product</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+            <div><label class="flbl">Catalogue</label><select id="fp2-cat" class="finput" onchange="filterCatForProd()"><option value="">-- Select --</option></select></div>
+            <div><label class="flbl">Category</label><select id="fp2-subcat" class="finput"><option value="">-- Select --</option></select></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+            <div><label class="flbl">Product Name</label><input id="fp2-name" class="finput" placeholder="e.g. Low End Sofa"/></div>
+            <div><label class="flbl">Tag (optional)</label><input id="fp2-tag" class="finput" placeholder="e.g. Popular, New"/></div>
+          </div>
+          <div style="margin-bottom:14px;"><label class="flbl">Description</label><textarea id="fp2-desc" class="finput" rows="2" placeholder="Short description…" style="resize:vertical;"></textarea></div>
+          <div style="margin-bottom:14px;"><label class="flbl">Product Image (optional)</label><div class="dropzone" id="dz-product" onclick="document.getElementById('fi-product').click()"><div class="dz-inner" id="dzi-product">🖼️ Click or drag image here<br><span style="font-size:11px;color:rgba(245,237,228,0.3);">JPG/PNG/WEBP max 1.5MB</span></div><img id="fp-product" style="display:none;max-height:120px;border-radius:8px;margin:0 auto;"/></div><input id="fi-product" type="file" accept="image/*" style="display:none;" onchange="prevImg(event,'product')"/></div>
+          <div id="msg-product" class="form-msg" style="display:none;"></div>
+          <div style="display:flex;gap:10px;"><button onclick="saveDoc('product')" class="btn-save">Save</button><button onclick="closeForm('product')" class="btn-cancel">Cancel</button></div>
+        </div>
+        <!-- Products table -->
+        <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;">
+          <select id="filter-prod-cat" class="finput" style="flex:1;min-width:160px;" onchange="filterProdList()"><option value="">All Catalogues</option></select>
+          <select id="filter-prod-subcat" class="finput" style="flex:1;min-width:160px;" onchange="filterProdList()"><option value="">All Categories</option></select>
+        </div>
+        <div id="list-product" style="background:rgba(255,255,255,0.025);border:1px solid rgba(201,149,106,0.12);border-radius:16px;overflow:hidden;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Admin trigger button -->
+<style>
+  #adminTrigger{position:fixed;bottom:22px;right:22px;z-index:999;width:44px;height:44px;border-radius:50%;background:rgba(14,8,10,0.8);border:1px solid rgba(201,149,106,0.18);color:rgba(201,149,106,0.32);font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s;backdrop-filter:blur(10px);}
+  #adminTrigger:hover{border-color:rgba(201,149,106,0.5);color:rgba(201,149,106,0.8);transform:scale(1.1);}
+  .admin-form{background:rgba(255,255,255,0.03);border:1px solid rgba(201,149,106,0.18);border-radius:16px;padding:24px;margin-bottom:22px;}
+  .flbl{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(201,149,106,0.8);display:block;margin-bottom:7px;}
+  .finput{width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(201,149,106,0.18);border-radius:9px;padding:11px 13px;color:#F5EDE4;font-size:13px;outline:none;font-family:'DM Sans',sans-serif;}
+  .finput:focus{border-color:rgba(201,149,106,0.5);}
+  select.finput option{background:#1a0c10;color:#F5EDE4;}
+  .dropzone{border:2px dashed rgba(201,149,106,0.25);border-radius:12px;padding:24px;text-align:center;cursor:pointer;transition:all 0.2s;background:rgba(255,255,255,0.02);}
+  .dropzone:hover{border-color:rgba(201,149,106,0.55);background:rgba(201,149,106,0.04);}
+  .dz-inner{color:rgba(201,149,106,0.7);font-size:13px;font-weight:500;}
+  .form-msg{padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:12px;text-align:center;}
+  .btn-save{background:linear-gradient(135deg,#7A4A2E,#C9956A);color:#0E080A;border:none;border-radius:9px;padding:11px 26px;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;}
+  .btn-cancel{background:rgba(255,255,255,0.05);border:1px solid rgba(201,149,106,0.2);color:rgba(245,237,228,0.5);border-radius:9px;padding:11px 20px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;}
+  .admin-card{background:rgba(255,255,255,0.035);border:1px solid rgba(201,149,106,0.18);border-radius:14px;overflow:hidden;transition:all 0.3s;}
+  .admin-card:hover{border-color:rgba(201,149,106,0.35);transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,0.4);}
+</style>
+<button id="adminTrigger" onclick="openAdminLogin()" title="Admin">⚙️</button>
+
+<!-- ════════ FIREBASE SDK ════════ -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
+  import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged }
+    from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+  import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, setDoc, query, where, orderBy }
+    from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDDtpbDvVq8k5BpFQ5wVAIS2cHjgua-Nys",
+    authDomain: "usha-furniture.firebaseapp.com",
+    projectId: "usha-furniture",
+    storageBucket: "usha-furniture.firebasestorage.app",
+    messagingSenderId: "106610824120",
+    appId: "1:106610824120:web:171d47a29320499ca2754d",
+    measurementId: "G-H5YRD220RZ"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  getAnalytics(app);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  window._fb = { auth, db, signInWithEmailAndPassword, signOut,
+    collection, getDocs, addDoc, deleteDoc, doc, setDoc, query, where, orderBy };
+
+  // ── Cache ──
+  window._cache = { catalogues: [], categories: [], products: [] };
+
+  const compress = (file) => new Promise((res, rej) => {
+    if (file.size > 1.5*1024*1024) { rej('Image too large (max 1.5MB)'); return; }
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = new Image();
+      img.onload = () => {
+        const MAX = 700, canvas = document.createElement('canvas');
+        let w = img.width, h = img.height;
+        if (w > MAX) { h = Math.round(h*MAX/w); w = MAX; }
+        if (h > MAX) { w = Math.round(w*MAX/h); h = MAX; }
+        canvas.width = w; canvas.height = h;
+        canvas.getContext('2d').drawImage(img,0,0,w,h);
+        res(canvas.toDataURL('image/jpeg', 0.78));
+      };
+      img.onerror = rej;
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+
+  // ── Load all data ──
+  window.loadAll = async function() {
+    const { db, collection, getDocs } = window._fb;
+    const [cs, cts, ps] = await Promise.all([
+      getDocs(collection(db,'catalogues')),
+      getDocs(collection(db,'categories')),
+      getDocs(collection(db,'products'))
+    ]);
+    window._cache.catalogues = cs.docs.map(d=>({id:d.id,...d.data()}));
+    window._cache.categories = cts.docs.map(d=>({id:d.id,...d.data()}));
+    window._cache.products   = ps.docs.map(d=>({id:d.id,...d.data()}));
+    renderFrontend();
+    renderAdminLists();
+  };
+
+  // ════════════════════════════════════════
+  // FRONTEND CATALOGUE DISPLAY
+  // ════════════════════════════════════════
+  window._state = { catalogue: null, category: null };
+
+  window.renderFrontend = function() {
+    const cats = window._cache.catalogues;
+    const tabsEl = document.getElementById('catalogue-tabs');
+    if (!cats.length) {
+      tabsEl.innerHTML = '<div style="text-align:center;padding:32px;color:rgba(245,237,228,0.3);width:100%;">No catalogue yet. Check back soon!</div>';
+      return;
+    }
+    tabsEl.innerHTML = '';
+    cats.forEach(c => {
+      const btn = document.createElement('button');
+      btn.style.cssText = 'flex:1;min-width:160px;padding:18px 24px;border-radius:14px;border:1px solid rgba(201,149,106,0.22);background:rgba(255,255,255,0.035);color:rgba(245,237,228,0.75);font-size:13px;font-weight:600;cursor:pointer;transition:all 0.25s;display:flex;flex-direction:column;align-items:center;gap:8px;backdrop-filter:blur(12px);';
+      btn.innerHTML = `<span style="font-size:28px;">${c.icon||'📂'}</span><span style="font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:700;color:#E8C9A0;">${c.name}</span>`;
+      btn.onmouseover = () => { btn.style.borderColor='rgba(201,149,106,0.5)'; btn.style.background='rgba(201,149,106,0.08)'; btn.style.transform='translateY(-3px)'; };
+      btn.onmouseout  = () => { btn.style.borderColor='rgba(201,149,106,0.22)'; btn.style.background='rgba(255,255,255,0.035)'; btn.style.transform=''; };
+      btn.onclick = () => showCategories(c.id, c.name);
+      tabsEl.appendChild(btn);
+    });
+    document.getElementById('cat-loading-msg') && document.getElementById('cat-loading-msg').remove();
+  };
+
+  window.showCategories = function(catId, catName) {
+    window._state.catalogue = catId;
+    document.getElementById('catalogue-tabs').style.display = 'none';
+    document.getElementById('products-row').style.display = 'none';
+    const cats = window._cache.categories.filter(c => c.catalogueId === catId);
+    document.getElementById('breadcrumb-cat').textContent = catName + ' › Categories';
+    const grid = document.getElementById('cat-grid');
+    grid.innerHTML = '';
+    if (!cats.length) {
+      grid.innerHTML = '<div style="color:rgba(245,237,228,0.3);padding:32px;grid-column:1/-1;text-align:center;">No categories yet.</div>';
+    } else {
+      cats.forEach(c => {
+        const card = document.createElement('div');
+        card.style.cssText = 'border-radius:14px;overflow:hidden;border:1px solid rgba(201,149,106,0.2);background:rgba(255,255,255,0.03);cursor:pointer;transition:all 0.3s;';
+        card.onmouseover = () => { card.style.borderColor='rgba(201,149,106,0.45)'; card.style.transform='translateY(-4px)'; card.style.boxShadow='0 16px 40px rgba(0,0,0,0.4)'; };
+        card.onmouseout  = () => { card.style.borderColor='rgba(201,149,106,0.2)'; card.style.transform=''; card.style.boxShadow=''; };
+        card.innerHTML = `
+          <div style="height:130px;background:rgba(201,149,106,0.05);display:flex;align-items:center;justify-content:center;overflow:hidden;">
+            ${c.imageBase64 ? `<img src="${c.imageBase64}" style="width:100%;height:100%;object-fit:cover;"/>` : `<span style="font-size:42px;">${c.icon||'🏷️'}</span>`}
+          </div>
+          <div style="padding:14px 16px;text-align:center;">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:700;color:#E8C9A0;">${c.name}</div>
+          </div>`;
+        card.onclick = () => showProducts(c.id, c.name, catName);
+        grid.appendChild(card);
+      });
+    }
+    document.getElementById('categories-row').style.display = 'block';
+  };
+
+  window.showProducts = function(subCatId, subCatName, catName) {
+    window._state.category = subCatId;
+    document.getElementById('categories-row').style.display = 'none';
+    const prods = window._cache.products.filter(p => p.categoryId === subCatId);
+    document.getElementById('breadcrumb-prod').textContent = catName + ' › ' + subCatName + ' › Products';
+    const grid = document.getElementById('prod-grid');
+    grid.innerHTML = '';
+    if (!prods.length) {
+      grid.innerHTML = '<div style="color:rgba(245,237,228,0.3);padding:32px;grid-column:1/-1;text-align:center;">No products yet in this category.</div>';
+    } else {
+      prods.forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'pcard';
+        card.innerHTML = `
+          <div class="pvisual" style="height:190px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:rgba(201,149,106,0.04);">
+            ${p.imageBase64 ? `<img src="${p.imageBase64}" style="width:100%;height:100%;object-fit:cover;"/>` : `<span style="font-size:56px;">📦</span>`}
+            ${p.tag ? `<span class="ptag">${p.tag}</span>` : ''}
+          </div>
+          <div class="pbody">
+            <div class="pcat">${subCatName}</div>
+            <div class="pname">${p.name}</div>
+            <div class="pdesc">${p.description||''}</div>
+          </div>`;
+        grid.appendChild(card);
+      });
+    }
+    document.getElementById('products-row').style.display = 'block';
+  };
+
+  window.goBackToCatalogues = function() {
+    document.getElementById('categories-row').style.display = 'none';
+    document.getElementById('catalogue-tabs').style.display = 'flex';
+  };
+  window.goBackToCategories = function() {
+    document.getElementById('products-row').style.display = 'none';
+    const c = window._cache.catalogues.find(x=>x.id===window._state.catalogue);
+    if (c) showCategories(c.id, c.name);
+  };
+
+  // ════════════════════════════════════════
+  // ADMIN - Save document
+  // ════════════════════════════════════════
+  window.saveDoc = async function(type) {
+    const { db, collection, addDoc, doc, setDoc } = window._fb;
+    let name, data, colName, editId;
+
+    if (type === 'catalogue') {
+      name = document.getElementById('fc-name').value.trim();
+      const icon = document.getElementById('fc-icon').value.trim() || '📂';
+      if (!name) { showMsg('catalogue','Name required','error'); return; }
+      colName = 'catalogues';
+      editId = window._editIds?.catalogue;
+      data = { name, icon, updatedAt: new Date().toISOString() };
+    } else if (type === 'category') {
+      const catalogueId = document.getElementById('fc2-cat').value;
+      name = document.getElementById('fc2-name').value.trim();
+      const icon = document.getElementById('fc2-icon').value.trim() || '🏷️';
+      if (!catalogueId || !name) { showMsg('category','Select catalogue & enter name','error'); return; }
+      colName = 'categories';
+      editId = window._editIds?.category;
+      data = { catalogueId, name, icon, updatedAt: new Date().toISOString() };
+    } else {
+      const catalogueId = document.getElementById('fp2-cat').value;
+      const categoryId  = document.getElementById('fp2-subcat').value;
+      name = document.getElementById('fp2-name').value.trim();
+      const tag  = document.getElementById('fp2-tag').value.trim();
+      const desc = document.getElementById('fp2-desc').value.trim();
+      if (!catalogueId || !categoryId || !name) { showMsg('product','Fill catalogue, category, name','error'); return; }
+      colName = 'products';
+      editId = window._editIds?.product;
+      data = { catalogueId, categoryId, name, tag, description: desc, updatedAt: new Date().toISOString() };
+    }
+
+    // Handle image
+    const fileInput = document.getElementById('fi-' + type);
+    if (fileInput.files[0]) {
+      showMsg(type, 'Processing image…', 'success');
+      try {
+        data.imageBase64 = await compress(fileInput.files[0]);
+      } catch(e) { showMsg(type, e, 'error'); return; }
+    } else {
+      data.imageBase64 = window._editImgs?.[type] || '';
+    }
+
+    showMsg(type, 'Saving…', 'success');
+    try {
+      if (editId) {
+        await setDoc(doc(db, colName, editId), data);
+      } else {
+        await addDoc(collection(db, colName), data);
+      }
+      showMsg(type, '✅ Saved!', 'success');
+      setTimeout(() => { closeForm(type); loadAll(); }, 1000);
+    } catch(e) { showMsg(type, 'Error: '+e.message, 'error'); }
+  };
+
+  // ── Delete doc ──
+  window.deleteDoc2 = async function(colName, id) {
+    if (!confirm('Delete this item? This cannot be undone.')) return;
+    const { db, doc, deleteDoc } = window._fb;
+    try { await deleteDoc(doc(db, colName, id)); loadAll(); }
+    catch(e) { alert('Error: '+e.message); }
+  };
+
+  // ── Render admin lists ──
+  window.renderAdminLists = function() {
+    const { catalogues, categories, products } = window._cache;
+
+    // --- Catalogues list ---
+    const lc = document.getElementById('list-catalogue');
+    lc.innerHTML = '';
+    if (!catalogues.length) { lc.innerHTML = '<div style="color:rgba(245,237,228,0.3);padding:32px;text-align:center;grid-column:1/-1;">No catalogues yet.</div>'; }
+    catalogues.forEach(c => {
+      const card = document.createElement('div');
+      card.className = 'admin-card';
+      card.innerHTML = `
+        <div style="height:110px;background:rgba(201,149,106,0.05);display:flex;align-items:center;justify-content:center;overflow:hidden;">
+          ${c.imageBase64 ? `<img src="${c.imageBase64}" style="width:100%;height:100%;object-fit:cover;"/>` : `<span style="font-size:40px;">${c.icon||'📂'}</span>`}
+        </div>
+        <div style="padding:14px;">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:700;color:#E8C9A0;margin-bottom:10px;">${c.name}</div>
+          <div style="display:flex;gap:7px;">
+            <button onclick="editItem('catalogue','${c.id}')" style="flex:1;background:rgba(201,149,106,0.1);border:1px solid rgba(201,149,106,0.2);color:rgba(201,149,106,0.8);border-radius:7px;padding:7px;font-size:10px;font-weight:700;cursor:pointer;">Edit</button>
+            <button onclick="deleteDoc2('catalogues','${c.id}')" style="background:rgba(139,26,46,0.15);border:1px solid rgba(139,26,46,0.3);color:#ff8a8a;border-radius:7px;padding:7px 10px;font-size:11px;cursor:pointer;">🗑</button>
+          </div>
+        </div>`;
+      lc.appendChild(card);
+    });
+
+    // --- Categories list ---
+    const lct = document.getElementById('list-category');
+    lct.innerHTML = '';
+    if (!categories.length) { lct.innerHTML = '<div style="color:rgba(245,237,228,0.3);padding:32px;text-align:center;grid-column:1/-1;">No categories yet.</div>'; }
+    categories.forEach(c => {
+      const parent = catalogues.find(x=>x.id===c.catalogueId);
+      const card = document.createElement('div');
+      card.className = 'admin-card';
+      card.innerHTML = `
+        <div style="height:110px;background:rgba(201,149,106,0.05);display:flex;align-items:center;justify-content:center;overflow:hidden;">
+          ${c.imageBase64 ? `<img src="${c.imageBase64}" style="width:100%;height:100%;object-fit:cover;"/>` : `<span style="font-size:40px;">${c.icon||'🏷️'}</span>`}
+        </div>
+        <div style="padding:14px;">
+          <div style="font-size:9px;color:rgba(201,149,106,0.6);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;">${parent?.name||'?'}</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:700;color:#E8C9A0;margin-bottom:10px;">${c.name}</div>
+          <div style="display:flex;gap:7px;">
+            <button onclick="editItem('category','${c.id}')" style="flex:1;background:rgba(201,149,106,0.1);border:1px solid rgba(201,149,106,0.2);color:rgba(201,149,106,0.8);border-radius:7px;padding:7px;font-size:10px;font-weight:700;cursor:pointer;">Edit</button>
+            <button onclick="deleteDoc2('categories','${c.id}')" style="background:rgba(139,26,46,0.15);border:1px solid rgba(139,26,46,0.3);color:#ff8a8a;border-radius:7px;padding:7px 10px;font-size:11px;cursor:pointer;">🗑</button>
+          </div>
+        </div>`;
+      lct.appendChild(card);
+    });
+
+    // --- Products list ---
+    populateCatalogueSelects();
+    filterProdList();
+  };
+
+  window.populateCatalogueSelects = function() {
+    const { catalogues, categories } = window._cache;
+    // admin form selects
+    ['fc2-cat','fp2-cat','filter-prod-cat'].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const cur = el.value;
+      el.innerHTML = id.startsWith('filter') ? '<option value="">All Catalogues</option>' : '<option value="">-- Select --</option>';
+      catalogues.forEach(c => {
+        const o = document.createElement('option');
+        o.value = c.id; o.textContent = c.name;
+        el.appendChild(o);
+      });
+      el.value = cur;
+    });
+    // category select in product form
+    filterCatForProd();
+    // filter subcat
+    const fcSub = document.getElementById('filter-prod-subcat');
+    if (fcSub) {
+      fcSub.innerHTML = '<option value="">All Categories</option>';
+      categories.forEach(c => {
+        const o = document.createElement('option'); o.value = c.id; o.textContent = c.name; fcSub.appendChild(o);
+      });
+    }
+  };
+
+  window.filterCatForProd = function() {
+    const catId = document.getElementById('fp2-cat')?.value;
+    const sub = document.getElementById('fp2-subcat');
+    if (!sub) return;
+    sub.innerHTML = '<option value="">-- Select Category --</option>';
+    window._cache.categories.filter(c => !catId || c.catalogueId === catId).forEach(c => {
+      const o = document.createElement('option'); o.value = c.id; o.textContent = c.name; sub.appendChild(o);
+    });
+  };
+
+  window.filterProdList = function() {
+    const catId    = document.getElementById('filter-prod-cat')?.value;
+    const subCatId = document.getElementById('filter-prod-subcat')?.value;
+    const { products, categories, catalogues } = window._cache;
+    const list = document.getElementById('list-product');
+    const filtered = products.filter(p =>
+      (!catId    || p.catalogueId === catId) &&
+      (!subCatId || p.categoryId  === subCatId)
+    );
+    list.innerHTML = '';
+    if (!filtered.length) {
+      list.innerHTML = '<div style="padding:32px;text-align:center;color:rgba(245,237,228,0.3);">No products found.</div>';
+      return;
+    }
+    filtered.forEach(p => {
+      const cat  = catalogues.find(x=>x.id===p.catalogueId);
+      const subcat = categories.find(x=>x.id===p.categoryId);
+      const row = document.createElement('div');
+      row.style.cssText = 'padding:14px 18px;border-bottom:1px solid rgba(201,149,106,0.07);display:flex;align-items:center;gap:14px;transition:background 0.2s;';
+      row.onmouseover = () => row.style.background='rgba(201,149,106,0.04)';
+      row.onmouseout  = () => row.style.background='';
+      row.innerHTML = `
+        <div style="width:48px;height:48px;border-radius:8px;overflow:hidden;flex-shrink:0;background:rgba(201,149,106,0.08);display:flex;align-items:center;justify-content:center;">
+          ${p.imageBase64 ? `<img src="${p.imageBase64}" style="width:100%;height:100%;object-fit:cover;"/>` : '📦'}
+        </div>
+        <div style="flex:1;min-width:0;">
+          <div style="font-size:14px;color:#F5EDE4;font-weight:600;">${p.name}</div>
+          <div style="font-size:11px;color:rgba(201,149,106,0.6);margin-top:2px;">${cat?.name||'?'} › ${subcat?.name||'?'}${p.tag?' · '+p.tag:''}</div>
+        </div>
+        <button onclick="editItem('product','${p.id}')" style="background:rgba(201,149,106,0.1);border:1px solid rgba(201,149,106,0.2);color:rgba(201,149,106,0.8);border-radius:7px;padding:7px 12px;font-size:10px;font-weight:700;cursor:pointer;white-space:nowrap;">Edit</button>
+        <button onclick="deleteDoc2('products','${p.id}')" style="background:rgba(139,26,46,0.15);border:1px solid rgba(139,26,46,0.3);color:#ff8a8a;border-radius:7px;padding:7px 10px;font-size:11px;cursor:pointer;">🗑</button>`;
+      list.appendChild(row);
+    });
+  };
+
+  // ── Edit item ──
+  window.editItem = function(type, id) {
+    window._editIds = window._editIds || {};
+    window._editImgs = window._editImgs || {};
+    const item =
+      type==='catalogue' ? window._cache.catalogues.find(x=>x.id===id) :
+      type==='category'  ? window._cache.categories.find(x=>x.id===id)  :
+      window._cache.products.find(x=>x.id===id);
+    if (!item) return;
+    window._editIds[type] = id;
+    window._editImgs[type] = item.imageBase64 || '';
+
+    aTab(type==='catalogue'?'catalogue':type==='category'?'category':'product');
+    openForm(type === 'product' ? 'product' : type, true);
+    document.getElementById('form-'+type+(type==='product'?'':'')+'-title') || 0;
+
+    if (type === 'catalogue') {
+      document.getElementById('form-catalogue-title').textContent = 'Edit Catalogue';
+      document.getElementById('fc-name').value = item.name || '';
+      document.getElementById('fc-icon').value = item.icon || '';
+    } else if (type === 'category') {
+      document.getElementById('form-category-title').textContent = 'Edit Category';
+      populateCatalogueSelects();
+      document.getElementById('fc2-cat').value = item.catalogueId || '';
+      document.getElementById('fc2-name').value = item.name || '';
+      document.getElementById('fc2-icon').value = item.icon || '';
+    } else {
+      document.getElementById('form-product-title').textContent = 'Edit Product';
+      populateCatalogueSelects();
+      document.getElementById('fp2-cat').value = item.catalogueId || '';
+      filterCatForProd();
+      setTimeout(()=>{ document.getElementById('fp2-subcat').value = item.categoryId || ''; },100);
+      document.getElementById('fp2-name').value = item.name || '';
+      document.getElementById('fp2-tag').value  = item.tag  || '';
+      document.getElementById('fp2-desc').value = item.description || '';
+    }
+
+    if (item.imageBase64) {
+      const previewId = type==='catalogue'?'catalogue':type==='category'?'category':'product';
+      const img = document.getElementById('fp-'+previewId);
+      img.src = item.imageBase64; img.style.display = 'block';
+      document.getElementById('dzi-'+previewId).style.display = 'none';
+    }
+  };
+
+  // ── Auth ──
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      document.getElementById('adminUserLabel').textContent = user.email;
+      loadAll();
+    }
+  });
+
+  // load frontend on page load (no auth required for reading)
+  loadAll();
+</script>
+
 <script>
-  // Floating navbar scroll effect
+  // Navbar scroll
   const nav = document.getElementById('navbar');
   window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
 
@@ -1238,13 +1591,122 @@
   }, { threshold: 0.08 });
   document.querySelectorAll('.rv').forEach(el => obs.observe(el));
 
-  // Product filter
-  function fp(cat, btn) {
-    document.querySelectorAll('.filt').forEach(b => b.classList.remove('on'));
-    btn.classList.add('on');
-    document.querySelectorAll('.pcard').forEach(c => {
-      c.style.display = (cat === 'all' || c.dataset.cat === cat) ? '' : 'none';
+  // ── Admin login ──
+  function openAdminLogin() {
+    document.getElementById('adminLoginModal').style.display = 'flex';
+    document.getElementById('adminLoginErr').style.display = 'none';
+    document.getElementById('adminEmail').value = '';
+    document.getElementById('adminPass').value = '';
+    setTimeout(()=>document.getElementById('adminEmail').focus(), 80);
+  }
+  function closeAdminLogin() { document.getElementById('adminLoginModal').style.display='none'; }
+  async function doAdminLogin() {
+    const email = document.getElementById('adminEmail').value.trim();
+    const pass  = document.getElementById('adminPass').value;
+    const btn   = document.getElementById('loginBtn');
+    if (!email||!pass) { showLE('Enter email and password.'); return; }
+    btn.textContent='Logging in…'; btn.disabled=true;
+    try {
+      const {auth,signInWithEmailAndPassword} = window._fb;
+      await signInWithEmailAndPassword(auth, email, pass);
+      closeAdminLogin();
+      document.getElementById('adminPanel').style.display='block';
+      document.body.style.overflow='hidden';
+      aTab('catalogue');
+      if(window.loadAll) window.loadAll();
+    } catch(e) {
+      let m='Login failed. Check credentials.';
+      if(e.code==='auth/wrong-password'||e.code==='auth/invalid-credential') m='Incorrect password.';
+      else if(e.code==='auth/user-not-found') m='User not found.';
+      else if(e.code==='auth/too-many-requests') m='Too many attempts. Try later.';
+      showLE(m);
+    }
+    btn.textContent='Login to Admin Panel'; btn.disabled=false;
+  }
+  function showLE(m){ const e=document.getElementById('adminLoginErr'); e.textContent=m; e.style.display='block'; }
+  async function adminLogout(){
+    const {auth,signOut}=window._fb;
+    await signOut(auth);
+    document.getElementById('adminPanel').style.display='none';
+    document.body.style.overflow='';
+  }
+
+  // ── Admin tabs ──
+  function aTab(t) {
+    ['catalogue','category','product'].forEach(x => {
+      document.getElementById('apanel-'+x).style.display = x===t?'block':'none';
+      const btn = document.getElementById('atab-'+x);
+      btn.style.background = x===t ? 'linear-gradient(135deg,rgba(201,149,106,0.2),rgba(201,149,106,0.08))' : 'transparent';
+      btn.style.color = x===t ? '#E8C9A0' : 'rgba(245,237,228,0.4)';
     });
+  }
+
+  // ── Forms ──
+  window._editIds  = {};
+  window._editImgs = {};
+
+  function openForm(type, isEdit) {
+    if (!isEdit) {
+      window._editIds[type]  = null;
+      window._editImgs[type] = '';
+      const tid = type==='product'?'product':type;
+      if(document.getElementById('form-'+type+'-title')) document.getElementById('form-'+type+'-title').textContent = 'Add '+type.charAt(0).toUpperCase()+type.slice(1);
+      // clear fields
+      if(type==='catalogue'){ document.getElementById('fc-name').value=''; document.getElementById('fc-icon').value=''; }
+      if(type==='category') { document.getElementById('fc2-name').value=''; document.getElementById('fc2-icon').value=''; document.getElementById('fc2-cat').value=''; }
+      if(type==='product')  { document.getElementById('fp2-name').value=''; document.getElementById('fp2-tag').value=''; document.getElementById('fp2-desc').value=''; document.getElementById('fp2-cat').value=''; document.getElementById('fp2-subcat').value=''; }
+      // reset image preview
+      const previewId = type;
+      const img = document.getElementById('fp-'+previewId);
+      if(img){ img.src=''; img.style.display='none'; }
+      const dzi = document.getElementById('dzi-'+previewId);
+      if(dzi) dzi.style.display='block';
+      document.getElementById('fi-'+type).value='';
+    }
+    document.getElementById('msg-'+type).style.display='none';
+    document.getElementById('form-'+type).style.display='block';
+    document.getElementById('form-'+type).scrollIntoView({behavior:'smooth',block:'nearest'});
+  }
+  function closeForm(type) {
+    document.getElementById('form-'+type).style.display='none';
+    window._editIds[type]=null;
+  }
+
+  function prevImg(event, type) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = document.getElementById('fp-'+type);
+      img.src = e.target.result; img.style.display='block';
+      document.getElementById('dzi-'+type).style.display='none';
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // Drag drop for all dropzones
+  ['catalogue','category','product'].forEach(type => {
+    const dz = document.getElementById('dz-'+type);
+    if (!dz) return;
+    dz.addEventListener('dragover', e=>{ e.preventDefault(); dz.style.borderColor='rgba(201,149,106,0.65)'; });
+    dz.addEventListener('dragleave', ()=>{ dz.style.borderColor='rgba(201,149,106,0.25)'; });
+    dz.addEventListener('drop', e=>{
+      e.preventDefault(); dz.style.borderColor='rgba(201,149,106,0.25)';
+      const file = e.dataTransfer.files[0];
+      if(file && file.type.startsWith('image/')){
+        const dt = new DataTransfer(); dt.items.add(file);
+        document.getElementById('fi-'+type).files = dt.files;
+        prevImg({target:{files:[file]}}, type);
+      }
+    });
+  });
+
+  function showMsg(type, msg, kind) {
+    const el = document.getElementById('msg-'+type);
+    el.textContent = msg; el.style.display='block';
+    el.style.background = kind==='success'?'rgba(22,101,52,0.22)':'rgba(139,26,46,0.2)';
+    el.style.border = '1px solid '+(kind==='success'?'rgba(22,101,52,0.4)':'rgba(139,26,46,0.4)');
+    el.style.color  = kind==='success'?'#86efac':'#ff8a8a';
   }
 </script>
 </body>
