@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Usha Furniture & Electronics – Wholesale & Retail</title>
+  <title>Usha Furniture & Electronics – Retail Shop</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <style>
     :root {
@@ -857,11 +857,82 @@
     /* ══════════════════════════════════════
        RESPONSIVE
     ══════════════════════════════════════ */
+    /* ══════════════════════════════════════
+       HAMBURGER / MOBILE NAV
+    ══════════════════════════════════════ */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column; justify-content: center; align-items: center;
+      gap: 5px; width: 40px; height: 40px; cursor: pointer;
+      background: rgba(201,149,106,0.07); border: 1px solid rgba(201,149,106,0.2);
+      border-radius: 8px; position: relative; z-index: 1001;
+      transition: all 0.2s;
+    }
+    .nav-hamburger:hover { background: rgba(201,149,106,0.14); border-color: rgba(201,149,106,0.4); }
+    .nav-hamburger span {
+      display: block; width: 18px; height: 1.5px;
+      background: var(--gold); border-radius: 2px;
+      transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+      transform-origin: center;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* Mobile nav drawer */
+    .mobile-nav-drawer {
+      display: none;
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 999;
+      background: rgba(7,4,6,0.97);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      flex-direction: column; align-items: center; justify-content: center;
+      gap: 0;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+    .mobile-nav-drawer.open {
+      display: flex; opacity: 1; pointer-events: all;
+    }
+    .mobile-nav-links {
+      list-style: none; display: flex; flex-direction: column;
+      align-items: center; gap: 4px; width: 100%; padding: 0 32px;
+    }
+    .mobile-nav-links li { width: 100%; text-align: center; }
+    .mobile-nav-links a {
+      display: block; padding: 18px 24px; border-radius: 12px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px; font-weight: 600; color: rgba(245,237,228,0.7);
+      text-decoration: none; letter-spacing: 0.5px;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+    }
+    .mobile-nav-links a:hover, .mobile-nav-links a:active {
+      color: var(--gold-light);
+      background: rgba(201,149,106,0.07);
+      border-color: rgba(201,149,106,0.2);
+    }
+    .mobile-nav-links .mobile-cta {
+      margin-top: 8px;
+      background: linear-gradient(135deg, rgba(201,149,106,0.15), rgba(201,149,106,0.07));
+      border-color: rgba(201,149,106,0.35) !important;
+      color: var(--gold) !important;
+    }
+    .mobile-nav-divider {
+      width: 60px; height: 1px; margin: 16px auto;
+      background: linear-gradient(90deg, transparent, rgba(201,149,106,0.2), transparent);
+    }
+    .mobile-nav-brand-txt {
+      font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase;
+      color: rgba(201,149,106,0.35); margin-bottom: 32px; text-align: center;
+    }
+
     @media(max-width:1024px){
       .ftop { grid-template-columns: 1fr 1fr; }
     }
     @media(max-width:960px){
-      #navbar { width: calc(100% - 32px); top: 12px; }
+      #navbar { padding: 0 20px; height: 64px; }
       .hero { grid-template-columns: 1fr; } .hero-right { display: none !important; }
       .about-grid { grid-template-columns: 1fr; gap: 48px; }
       .wgrid { gap: 0; }
@@ -870,10 +941,14 @@
       .contact-grid-3 { grid-template-columns: 1fr; }
       .contact-bottom { grid-template-columns: 1fr; }
       .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
       .contact-inner { padding: 36px 24px; }
     }
     @media(max-width:600px){
-      .section { padding: 72px 6vw; }
+      #navbar { padding: 0 16px; height: 60px; }
+      .nav-title { font-size: 12px; }
+      .nav-subtitle { font-size: 7px; letter-spacing: 2px; }
+      .section { padding: 72px 5vw; }
       .scard-row { grid-template-columns: 1fr 1fr; }
       .ftop { grid-template-columns: 1fr; gap: 32px; }
       .hero-stats { flex-direction: column; border-radius: 12px; }
@@ -882,6 +957,13 @@
       .wcard { grid-template-columns: 1fr; }
       .wnum { display: none; }
       .wcard-body { align-items: flex-start; }
+      .hero { padding: 120px 6vw 80px; }
+    }
+    /* Tablet specific */
+    @media(min-width:601px) and (max-width:960px){
+      #navbar { padding: 0 28px; }
+      .hero { padding: 130px 7vw 90px; }
+      .section { padding: 80px 7vw; }
     }
   </style>
 </head>
@@ -892,6 +974,18 @@
 <div class="bg-orb orb2"></div>
 <div class="bg-orb orb3"></div>
 
+<!-- ════════ MOBILE NAV DRAWER ════════ -->
+<div class="mobile-nav-drawer" id="mobileDrawer">
+  <div class="mobile-nav-brand-txt">Usha Furniture &amp; Electronics · Est. 2015</div>
+  <ul class="mobile-nav-links">
+    <li><a href="#products" onclick="closeMobileNav()">Products</a></li>
+    <li><a href="#about" onclick="closeMobileNav()">About</a></li>
+    <li><a href="#why" onclick="closeMobileNav()">Why Us</a></li>
+    <li><div class="mobile-nav-divider"></div></li>
+    <li><a href="#contact" class="mobile-cta" onclick="closeMobileNav()">Contact Us</a></li>
+  </ul>
+</div>
+
 <!-- ════════ PREMIUM NAVBAR ════════ -->
 <nav id="navbar">
   <a href="#" class="nav-brand">
@@ -900,8 +994,8 @@
       <div class="nav-mono-inner"><span>UF</span></div>
     </div>
     <div class="nav-text-block">
-      <div class="nav-title">Usha Furniture</div>
-      <div class="nav-subtitle">Wholesale &amp; Retail · Est. 2025</div>
+      <div class="nav-title">Usha Furniture &amp; Electronics</div>
+      <div class="nav-subtitle">Retail Shop · Est. 2015</div>
     </div>
   </a>
   <ul class="nav-links">
@@ -911,6 +1005,9 @@
     <li><span class="nav-divider" aria-hidden="true"></span></li>
     <li><a href="#contact" class="nav-cta">Contact</a></li>
   </ul>
+  <button class="nav-hamburger" id="navHamburger" onclick="toggleMobileNav()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- ════════ HERO ════════ -->
@@ -923,23 +1020,23 @@
   <div class="hero-left">
     <div class="hero-eyebrow">
       <div class="hero-eyebrow-dot"></div>
-      <div class="hero-eyebrow-text">Est. September 2025 · Sathankulam, Thoothukudi</div>
+      <div class="hero-eyebrow-text">Est. 2015 · Thiruchendur</div>
     </div>
     <h1>
       Your Trusted<br>
-      <span class="gold-word">Wholesale</span> &amp; <span class="outline-word">Retail</span><br>
-      Partner
+      <span class="gold-word">Furniture</span> &amp; <span class="outline-word">Electronics</span><br>
+      Retail Shop
     </h1>
     <div class="hero-line"></div>
-    <p class="hero-p">Usha Furniture & Electronics brings you a premium range of household products — chairs, stools, buckets, kitchenware and more — at unbeatable wholesale and retail prices in Sathankulam.</p>
+    <p class="hero-p">Usha Furniture &amp; Electronics brings you a premium range of home furniture and electronics — sofas, beds, TVs, refrigerators, washing machines and more — at the best retail prices in Thiruchendur.</p>
     <div class="hero-btns">
       <a href="#products" class="btn-gold">Explore Products</a>
       <a href="#contact" class="btn-glass">📞 Call Us</a>
     </div>
     <div class="hero-stats">
-      <div class="hero-stat-item"><div class="hs-num">7+</div><div class="hs-lbl">Brand Partners</div></div>
+      <div class="hero-stat-item"><div class="hs-num">10+</div><div class="hs-lbl">Years Serving</div></div>
       <div class="hero-stat-item"><div class="hs-num">200+</div><div class="hs-lbl">Products</div></div>
-      <div class="hero-stat-item"><div class="hs-num">W&amp;R</div><div class="hs-lbl">Wholesale &amp; Retail</div></div>
+      <div class="hero-stat-item"><div class="hs-num">20+</div><div class="hs-lbl">Top Brands</div></div>
     </div>
   </div>
 </section>
@@ -949,20 +1046,17 @@
   <div class="bb-track-wrap">
     <!-- Two identical sets for seamless loop -->
     <div class="bb-track">
-      <div class="bb-brand-item"><div class="bb-brand-dot"></div><span class="bb-brand-name">Apple</span></div>
-      <div class="bb-brand-item"><div class="bb-brand-dot"></div><span class="bb-brand-name">Manpasand</span></div>
-      <div class="bb-brand-item"><div class="bb-brand-dot"></div><span class="bb-brand-name">AVRO</span></div>
-      <div class="bb-brand-item"><div class="bb-brand-dot"></div><span class="bb-brand-name">Deccan</span></div>
-      <div class="bb-brand-item"><div class="bb-brand-dot"></div><span class="bb-brand-name">Veeram</span></div>
-      <div class="bb-brand-item"><div class="bb-brand-dot"></div><span class="bb-brand-name">Byon</span></div>
-      <div class="bb-brand-item"><div class="bb-brand-dot"></div><span class="bb-brand-name">ADR</span></div>
-      <div class="bb-brand-item"><div class="bb-brand-dot"></div><span class="bb-brand-name">Apple</span></div>
-      <div class="bb-brand-item"><div class="bb-brand-dot"></div><span class="bb-brand-name">Manpasand</span></div>
-      <div class="bb-brand-item"><div class="bb-brand-dot"></div><span class="bb-brand-name">AVRO</span></div>
-      <div class="bb-brand-item"><div class="bb-brand-dot"></div><span class="bb-brand-name">Deccan</span></div>
-      <div class="bb-brand-item"><div class="bb-brand-dot"></div><span class="bb-brand-name">Veeram</span></div>
-      <div class="bb-brand-item"><div class="bb-brand-dot"></div><span class="bb-brand-name">Byon</span></div>
-      <div class="bb-brand-item"><div class="bb-brand-dot"></div><span class="bb-brand-name">ADR</span></div>
+      <div class="bb-brand-item"><div class="bb-brand-dot"></div><span class="bb-brand-name">Sofa</span></div>
+      <div class="bb-brand-item"><div class="bb-brand-dot"></div><span class="bb-brand-name">wardrobes</span></div>
+      <div class="bb-brand-item"><div class="bb-brand-dot"></div><span class="bb-brand-name">Bed</span></div>
+      <div class="bb-brand-item"><div class="bb-brand-dot"></div><span class="bb-brand-name">Table</span></div>
+      <div class="bb-brand-item"><div class="bb-brand-dot"></div><span class="bb-brand-name">Chair</span></div>
+      <div class="bb-brand-item"><div class="bb-brand-dot"></div><span class="bb-brand-name">Air Conditioner</span></div>
+      <div class="bb-brand-item"><div class="bb-brand-dot"></div><span class="bb-brand-name">Refrigerators</span></div>
+      <div class="bb-brand-item"><div class="bb-brand-dot"></div><span class="bb-brand-name">Washing Machine</span></div>
+      <div class="bb-brand-item"><div class="bb-brand-dot"></div><span class="bb-brand-name">TV</span></div>
+      <div class="bb-brand-item"><div class="bb-brand-dot"></div><span class="bb-brand-name">Blender</span></div>
+      <div class="bb-brand-item"><div class="bb-brand-dot"></div><span class="bb-brand-name">Water purifiers</span></div>
     </div>
   </div>
 </div>
@@ -1009,24 +1103,24 @@
     <div class="rv about-text-block">
       <div class="sec-eyebrow"><div class="sec-eline"></div><div class="sec-etxt">About Us</div></div>
       <div class="sec-title">Who We <span class="gold-word">Are</span></div>
-      <p class="sec-desc">Established in September 2025, Usha Furniture & Electronics is a trusted wholesale and retail shop in Sathankulam, Thoothukudi. We supply quality household goods to homes and businesses across the region.</p>
-      <p class="sec-desc" style="margin-top:14px">As authorised dealers for Apple, Manpasand, ADR, Veeram, Deccan, AVRO and Byon, we guarantee genuine products with every purchase.</p>
+      <p class="sec-desc">Established in 2015, Usha Furniture &amp; Electronics is a trusted retail shop in Thiruchendur. We bring quality home furniture and electronics to families across the region — with over a decade of trusted service.</p>
+      <!-- <p class="sec-desc" style="margin-top:14px">As authorised dealers for Apple, Manpasand, ADR, Veeram, Deccan, AVRO and Byon, we guarantee genuine products with every purchase.</p> -->
       <div class="about-feats">
-        <div class="afeat"><div class="aico">🏪</div><div class="atxt"><strong>Wholesale Supply</strong><span>Bulk pricing for retailers, institutions &amp; businesses</span></div></div>
-        <div class="afeat"><div class="aico">🛍️</div><div class="atxt"><strong>Retail Shopping</strong><span>Walk-in purchases available for all households</span></div></div>
-        <div class="afeat"><div class="aico">✅</div><div class="atxt"><strong>Genuine Brands</strong><span>Authorised dealer for 7 trusted top brands</span></div></div>
-        <div class="afeat"><div class="aico">📍</div><div class="atxt"><strong>Local &amp; Reliable</strong><span>Serving Sathankulam &amp; surrounding areas</span></div></div>
+        <div class="afeat"><div class="aico">🛋️</div><div class="atxt"><strong>Home Furniture</strong><span>Sofas, beds, wardrobes, dining sets &amp; more</span></div></div>
+        <div class="afeat"><div class="aico">📺</div><div class="atxt"><strong>Electronics</strong><span>TVs, refrigerators, washing machines &amp; appliances</span></div></div>
+        <div class="afeat"><div class="aico">✅</div><div class="atxt"><strong>Genuine Brands</strong><span>Authorised dealer for 20+ trusted top brands</span></div></div>
+        <div class="afeat"><div class="aico">📍</div><div class="atxt"><strong>Local &amp; Reliable</strong><span>Serving Thiruchendur &amp; surrounding areas since 2015</span></div></div>
       </div>
     </div>
     <div class="about-right rv d1">
       <div class="scard-row">
-        <div class="scard"><div class="sico">📅</div><div class="snum">2025</div><div class="slbl">Established</div></div>
-        <div class="scard inv"><div class="sico">🤝</div><div class="snum">7+</div><div class="slbl">Brand Partners</div></div>
+        <div class="scard"><div class="sico">📅</div><div class="snum">2015</div><div class="slbl">Established</div></div>
+        <div class="scard inv"><div class="sico">🤝</div><div class="snum">20+</div><div class="slbl">Brand Partners</div></div>
       </div>
       <div class="scard-wide">
         <div class="scard-wide-item"><div class="sico">📦</div><div class="snum">200+</div><div class="slbl">Products</div></div>
         <div class="scard-wide-divider"></div>
-        <div class="scard-wide-item"><div class="sico">⭐</div><div class="snum">W&amp;R</div><div class="slbl">Both Available</div></div>
+        <div class="scard-wide-item"><div class="sico">⭐</div><div class="snum">10+</div><div class="slbl">Years of Trust</div></div>
       </div>
     </div>
   </div>
@@ -1037,7 +1131,7 @@
   <div class="why-watermark">UF</div>
   <div class="why-hd rv">
     <div class="sec-eyebrow"><div class="sec-eline"></div><div class="sec-etxt">Why Choose Us</div></div>
-    <div class="sec-title">The Usha Furniture & Electronics <span class="gold-word">Advantage</span></div>
+    <div class="sec-title">The Usha Furniture &amp; Electronics <span class="gold-word">Advantage</span></div>
   </div>
   <div class="wgrid rv">
     <div class="wcard">
@@ -1045,8 +1139,8 @@
       <div class="wcard-body">
         <div class="wico">💰</div>
         <div class="wcard-text">
-          <div class="wtitle">Competitive Pricing</div>
-          <div class="wdesc">Best wholesale and retail rates in the region — maximum value guaranteed on every single purchase.</div>
+          <div class="wtitle">Best Retail Prices</div>
+          <div class="wdesc">We offer the most competitive retail prices on furniture and electronics in the region — maximum value on every purchase.</div>
         </div>
       </div>
     </div>
@@ -1055,28 +1149,28 @@
       <div class="wcard-body">
         <div class="wico">✅</div>
         <div class="wcard-text">
-          <div class="wtitle">100% Genuine</div>
-          <div class="wdesc">Products sourced directly from authorised distributors — guaranteed authentic, zero counterfeits ever.</div>
+          <div class="wtitle">100% Genuine Products</div>
+          <div class="wdesc">Products sourced directly from authorised distributors — every item is guaranteed authentic with full brand warranty.</div>
         </div>
       </div>
     </div>
     <div class="wcard">
       <div class="wnum">03</div>
       <div class="wcard-body">
-        <div class="wico">🚚</div>
+        <div class="wico">🛋️</div>
         <div class="wcard-text">
-          <div class="wtitle">Bulk Orders Welcome</div>
-          <div class="wdesc">Special wholesale pricing for shops, institutions and businesses placing high-volume orders.</div>
+          <div class="wtitle">Wide Furniture Range</div>
+          <div class="wdesc">From living room sofas to bedroom wardrobes — complete home furnishing solutions all under one roof.</div>
         </div>
       </div>
     </div>
     <div class="wcard">
       <div class="wnum">04</div>
       <div class="wcard-body">
-        <div class="wico">🌟</div>
+        <div class="wico">📺</div>
         <div class="wcard-text">
-          <div class="wtitle">Wide Selection</div>
-          <div class="wdesc">Furniture to kitchenware — a comprehensive range of quality household products all under one roof.</div>
+          <div class="wtitle">Latest Electronics</div>
+          <div class="wdesc">TVs, refrigerators, washing machines and home appliances from trusted brands — always updated with the latest models.</div>
         </div>
       </div>
     </div>
@@ -1085,8 +1179,8 @@
       <div class="wcard-body">
         <div class="wico">🤝</div>
         <div class="wcard-text">
-          <div class="wtitle">Friendly Service</div>
-          <div class="wdesc">Our experienced team helps you find exactly the right products for your home or business — every time.</div>
+          <div class="wtitle">10+ Years of Trust</div>
+          <div class="wdesc">Serving Thiruchendur families since 2015 — our experienced team helps you find exactly the right products for your home.</div>
         </div>
       </div>
     </div>
@@ -1096,7 +1190,7 @@
         <div class="wico">📍</div>
         <div class="wcard-text">
           <div class="wtitle">Prime Location</div>
-          <div class="wdesc">On Udangudi Road, Naduvakuruchi, Sathankulam — easily accessible from all parts of Thoothukudi district.</div>
+          <div class="wdesc">On Thiruchendur — easily accessible!</div>
         </div>
       </div>
     </div>
@@ -1111,11 +1205,11 @@
       <div class="contact-header-left">
         <div class="sec-eyebrow"><div class="sec-eline"></div><div class="sec-etxt">Get In Touch</div></div>
         <div class="sec-title">Visit or <span class="gold-word">Call</span> Us Today</div>
-        <p class="sec-desc">We're open six days a week. Come visit our store in Sathankulam or call us directly for wholesale enquiries and product availability.</p>
+        <p class="sec-desc">We're open six days a week. Come visit our store in Thiruchendur or call us directly for product enquiries and availability.</p>
       </div>
       <div class="contact-header-right">
         <div class="contact-big-label">7871<br>825684</div>
-        <div class="contact-sub-label">Call us directly for wholesale enquiries, bulk orders &amp; product availability.</div>
+        <div class="contact-sub-label">Call us directly for product enquiries, orders &amp; availability.</div>
       </div>
     </div>
 
@@ -1143,8 +1237,8 @@
   <div class="ftop">
     <div>
       <div class="flogname">Usha Furniture & Electronics</div>
-      <div class="flogsub">Wholesale &amp; Retail · Est. September 2025</div>
-      <div class="flogdesc">Your trusted household products store in Sathankulam, Thoothukudi — stocking 100+ products from 7+ authorised brands at the best prices.</div>
+      <div class="flogsub">Retail Shop · Est. 2015</div>
+      <div class="flogdesc">Your trusted furniture &amp; electronics retail shop in Thiruchendur — serving families since 2015 with 200+ products from 20+ authorised brands.</div>
     </div>
     <div>
       <div class="fcol-title">Quick Links</div>
@@ -1156,7 +1250,7 @@
       </ul>
     </div>
     <div>
-      <div class="fcol-title">Our Brands</div>
+      <div class="fcol-title">Our Products</div>
       <ul class="flist">
         <li><a href="#">Apple</a></li>
         <li><a href="#">Manpasand</a></li>
@@ -1168,13 +1262,12 @@
       <div class="fcol-title">Contact Us</div>
       <ul class="flist">
         <li><a href="tel:7871825684">📞 7871825684</a></li>    
-        <li><a href="#">Udangudi Road, Sathankulam</a></li>
-        <li><a href="#">Thoothukudi – 628 653</a></li>
+        <li><a href="#">Thiruchendur - 628215</a></li>
       </ul>
     </div>
   </div>
   <div class="fbot">
-    <div class="fcopy">© 2025 Usha Furniture & Electronics. All rights reserved. Sathankulam, Thoothukudi.</div>
+    <div class="fcopy">© 2015–2026 Usha Furniture &amp; Electronics. All rights reserved. Thiruchendur.</div>
     <div class="fphones">
       <a href="tel:7871825684" class="fphone">📞 7871825684</a>
     </div>
@@ -1189,7 +1282,7 @@
     <div style="text-align:center;margin-bottom:32px;">
       <div style="width:56px;height:56px;border-radius:50%;background:rgba(201,149,106,0.12);border:1px solid rgba(201,149,106,0.3);display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 16px;">🔐</div>
       <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:#E8C9A0;margin-bottom:6px;">Admin Login</div>
-      <div style="font-size:11px;color:rgba(245,237,228,0.4);letter-spacing:2px;text-transform:uppercase;">Usha Furniture & Electronics</div>
+      <div style="font-size:11px;color:rgba(245,237,228,0.4);letter-spacing:2px;text-transform:uppercase;">Usha Furniture &amp; Electronics · Retail</div>
     </div>
     <div id="adminLoginErr" style="display:none;background:rgba(139,26,46,0.2);border:1px solid rgba(139,26,46,0.4);border-radius:10px;padding:12px 16px;margin-bottom:20px;font-size:13px;color:#ff8a8a;text-align:center;"></div>
     <div style="margin-bottom:18px;">
@@ -1296,9 +1389,47 @@
             <div><label class="flbl">Tag (optional)</label><input id="fp2-tag" class="finput" placeholder="e.g. Popular, New"/></div>
           </div>
           <div style="margin-bottom:14px;"><label class="flbl">Description</label><textarea id="fp2-desc" class="finput" rows="2" placeholder="Short description…" style="resize:vertical;"></textarea></div>
+
+          <!-- ══ PRICING & OFFER ZONE ══ -->
+          <div style="border:1px solid rgba(201,149,106,0.2);border-radius:12px;padding:18px;margin-bottom:14px;background:rgba(201,149,106,0.03);">
+            <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(201,149,106,0.7);margin-bottom:14px;display:flex;align-items:center;gap:8px;">
+              <span>💰</span> Pricing &amp; Offer Zone <span style="font-size:9px;color:rgba(245,237,228,0.3);font-weight:400;letter-spacing:0;text-transform:none;">(all optional)</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+              <div>
+                <label class="flbl">Regular Price (₹)</label>
+                <input id="fp2-regular-price" class="finput" type="number" min="0" placeholder="e.g. 12000"/>
+              </div>
+              <div>
+                <label class="flbl">Discount Price (₹) <span style="color:rgba(139,26,46,0.9);font-size:9px;">— triggers Offer Zone</span></label>
+                <input id="fp2-discount-price" class="finput" type="number" min="0" placeholder="e.g. 9999" oninput="toggleOfferDates()"/>
+              </div>
+            </div>
+            <div id="offer-dates-block" style="display:none;grid-template-columns:1fr 1fr;gap:14px;">
+              <div>
+                <label class="flbl">Offer From Date</label>
+                <input id="fp2-offer-from" class="finput" type="date"/>
+              </div>
+              <div>
+                <label class="flbl">Offer To Date</label>
+                <input id="fp2-offer-to" class="finput" type="date"/>
+              </div>
+            </div>
+            <div id="offer-hint" style="display:none;margin-top:10px;font-size:11px;color:rgba(201,149,106,0.6);line-height:1.6;">
+              🏷️ This product will appear in <strong style="color:#C9956A;">Offer Zone</strong> during the offer period and show both prices. After the offer ends, it reverts to regular price automatically.
+            </div>
+          </div>
+
           <div style="margin-bottom:14px;"><label class="flbl">Product Image (optional)</label><div class="dropzone" id="dz-product" onclick="document.getElementById('fi-product').click()"><div class="dz-inner" id="dzi-product">🖼️ Click or drag image here<br><span style="font-size:11px;color:rgba(245,237,228,0.3);">JPG/PNG/WEBP max 1.5MB</span></div><img id="fp-product" style="display:none;max-height:120px;border-radius:8px;margin:0 auto;"/></div><input id="fi-product" type="file" accept="image/*" style="display:none;" onchange="prevImg(event,'product')"/></div>
           <div id="msg-product" class="form-msg" style="display:none;"></div>
-          <div style="display:flex;gap:10px;"><button onclick="saveDoc('product')" class="btn-save">Save</button><button onclick="closeForm('product')" class="btn-cancel">Cancel</button></div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+            <button onclick="saveDoc('product')" class="btn-save">Save</button>
+            <button onclick="closeForm('product')" class="btn-cancel">Cancel</button>
+            <button id="btn-wa-form" onclick="shareProductOnWhatsApp(window._editIds?.product||'__form__')" style="background:linear-gradient(135deg,#128C7E,#25D366);color:#fff;border:none;border-radius:9px;padding:11px 20px;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:7px;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.858L.057 23.504a.5.5 0 0 0 .609.61l5.76-1.512A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.806 9.806 0 0 1-5.031-1.383l-.36-.214-3.733.979.997-3.648-.234-.374A9.789 9.789 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+              Share on WhatsApp
+            </button>
+          </div>
         </div>
         <!-- Products table -->
         <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;">
@@ -1328,6 +1459,52 @@
   .btn-cancel{background:rgba(255,255,255,0.05);border:1px solid rgba(201,149,106,0.2);color:rgba(245,237,228,0.5);border-radius:9px;padding:11px 20px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;}
   .admin-card{background:rgba(255,255,255,0.035);border:1px solid rgba(201,149,106,0.18);border-radius:14px;overflow:hidden;transition:all 0.3s;}
   .admin-card:hover{border-color:rgba(201,149,106,0.35);transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,0.4);}
+
+  /* ── Offer Zone styles ── */
+  .offer-badge {
+    display:inline-flex;align-items:center;gap:5px;
+    background:linear-gradient(135deg,rgba(139,26,46,0.85),rgba(180,40,60,0.9));
+    color:#fff;font-size:8px;font-weight:800;letter-spacing:1.5px;
+    text-transform:uppercase;padding:4px 10px;border-radius:100px;
+    box-shadow:0 2px 12px rgba(139,26,46,0.5);
+    animation: offer-pulse 2s ease-in-out infinite;
+  }
+  @keyframes offer-pulse {
+    0%,100%{box-shadow:0 2px 12px rgba(139,26,46,0.5)}
+    50%{box-shadow:0 2px 20px rgba(180,40,60,0.8)}
+  }
+  .price-regular { font-size:12px;color:rgba(245,237,228,0.4);text-decoration:line-through; }
+  .price-discount {
+    font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;
+    color:#ff6b8a;line-height:1;
+  }
+  .price-only {
+    font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;
+    color:var(--gold);line-height:1;
+  }
+  .offer-countdown {
+    font-size:10px;color:rgba(255,107,138,0.75);margin-top:4px;
+    font-weight:600;letter-spacing:0.5px;
+  }
+  /* Offer Zone catalogue tab special highlight */
+  .offer-zone-tab {
+    background:linear-gradient(135deg,rgba(139,26,46,0.18),rgba(201,149,106,0.06)) !important;
+    border-color:rgba(139,26,46,0.45) !important;
+    position:relative;overflow:hidden;
+  }
+  .offer-zone-tab::before {
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(135deg,rgba(139,26,46,0.08),transparent);
+    pointer-events:none;
+  }
+  .offer-zone-tab-label {
+    color:#ff8a8a !important;
+  }
+  /* product card offer border */
+  .pcard.is-offer {
+    border-color:rgba(139,26,46,0.45) !important;
+    box-shadow:0 0 0 1px rgba(139,26,46,0.2),0 8px 32px rgba(139,26,46,0.12) !important;
+  }
 </style>
 <button id="adminTrigger" onclick="openAdminLogin()" title="Admin">⚙️</button>
 
@@ -1397,6 +1574,65 @@
   };
 
   // ════════════════════════════════════════
+  // OFFER ZONE HELPERS
+  // ════════════════════════════════════════
+
+  // Returns today as YYYY-MM-DD string
+  function todayStr() {
+    return new Date().toISOString().slice(0,10);
+  }
+
+  // Is this product currently in active offer?
+  function isActiveOffer(p) {
+    if (!p.discountPrice) return false;
+    const today = todayStr();
+    // if no dates set — offer is permanent until removed
+    if (!p.offerFrom && !p.offerTo) return true;
+    if (p.offerFrom && today < p.offerFrom) return false;
+    if (p.offerTo   && today > p.offerTo)   return false;
+    return true;
+  }
+
+  // Days remaining label
+  function offerCountdownLabel(p) {
+    if (!p.offerTo) return 'Offer valid now';
+    const today = todayStr();
+    const diff = Math.ceil((new Date(p.offerTo) - new Date(today)) / 86400000);
+    if (diff < 0)  return '';
+    if (diff === 0) return '⏰ Last day!';
+    if (diff === 1) return '⏰ 1 day left';
+    return `⏰ ${diff} days left`;
+  }
+
+  // Build price HTML for a product card
+  function buildPriceHtml(p) {
+    if (!p.regularPrice && !p.discountPrice) return '';
+    if (isActiveOffer(p)) {
+      const savePct = p.regularPrice
+        ? Math.round(100 - (p.discountPrice / p.regularPrice * 100))
+        : null;
+      return `
+        <div style="margin-top:10px;display:flex;flex-direction:column;gap:4px;">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+            <span class="offer-badge">🔥 OFFER</span>
+            ${savePct ? `<span style="font-size:9px;color:#ff8a8a;font-weight:700;">${savePct}% OFF</span>` : ''}
+          </div>
+          <div style="display:flex;align-items:baseline;gap:8px;margin-top:4px;">
+            <span class="price-discount">₹${Number(p.discountPrice).toLocaleString('en-IN')}</span>
+            ${p.regularPrice ? `<span class="price-regular">₹${Number(p.regularPrice).toLocaleString('en-IN')}</span>` : ''}
+          </div>
+          <div class="offer-countdown">${offerCountdownLabel(p)}</div>
+        </div>`;
+    } else if (p.regularPrice) {
+      return `
+        <div style="margin-top:10px;">
+          <span class="price-only">₹${Number(p.regularPrice).toLocaleString('en-IN')}</span>
+        </div>`;
+    }
+    return '';
+  }
+
+  // ════════════════════════════════════════
   // FRONTEND CATALOGUE DISPLAY
   // ════════════════════════════════════════
   window._state = { catalogue: null, category: null };
@@ -1409,6 +1645,11 @@
       return;
     }
     tabsEl.innerHTML = '';
+
+    // Check if any products currently have active offers
+    const hasOffers = window._cache.products.some(p => isActiveOffer(p));
+
+    // Regular catalogues
     cats.forEach(c => {
       const btn = document.createElement('button');
       btn.style.cssText = 'flex:1;min-width:160px;padding:18px 24px;border-radius:14px;border:1px solid rgba(201,149,106,0.22);background:rgba(255,255,255,0.035);color:rgba(245,237,228,0.75);font-size:13px;font-weight:600;cursor:pointer;transition:all 0.25s;display:flex;flex-direction:column;align-items:center;gap:8px;backdrop-filter:blur(12px);';
@@ -1418,6 +1659,22 @@
       btn.onclick = () => showCategories(c.id, c.name);
       tabsEl.appendChild(btn);
     });
+
+    // Offer Zone tab — only if active offers exist
+    if (hasOffers) {
+      const offerBtn = document.createElement('button');
+      offerBtn.className = 'offer-zone-tab';
+      offerBtn.style.cssText = 'flex:1;min-width:160px;padding:18px 24px;border-radius:14px;border:1px solid rgba(139,26,46,0.45);background:linear-gradient(135deg,rgba(139,26,46,0.18),rgba(201,149,106,0.06));color:rgba(245,237,228,0.75);font-size:13px;font-weight:600;cursor:pointer;transition:all 0.25s;display:flex;flex-direction:column;align-items:center;gap:8px;backdrop-filter:blur(12px);position:relative;overflow:hidden;';
+      offerBtn.innerHTML = `
+        <span style="font-size:28px;">🔥</span>
+        <span style="font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:700;color:#ff8a8a;" class="offer-zone-tab-label">Offer Zone</span>
+        <span style="font-size:9px;color:rgba(255,138,138,0.65);font-weight:600;letter-spacing:1px;">LIMITED TIME</span>`;
+      offerBtn.onmouseover = () => { offerBtn.style.borderColor='rgba(180,40,60,0.7)'; offerBtn.style.transform='translateY(-3px)'; offerBtn.style.boxShadow='0 12px 36px rgba(139,26,46,0.3)'; };
+      offerBtn.onmouseout  = () => { offerBtn.style.borderColor='rgba(139,26,46,0.45)'; offerBtn.style.transform=''; offerBtn.style.boxShadow=''; };
+      offerBtn.onclick = () => showOfferZone();
+      tabsEl.appendChild(offerBtn);
+    }
+
     document.getElementById('cat-loading-msg') && document.getElementById('cat-loading-msg').remove();
   };
 
@@ -1451,28 +1708,73 @@
     document.getElementById('categories-row').style.display = 'block';
   };
 
+  // ── Show Offer Zone (flat list of all active-offer products) ──
+  window.showOfferZone = function() {
+    window._state.catalogue = '__offer_zone__';
+    document.getElementById('catalogue-tabs').style.display = 'none';
+    document.getElementById('categories-row').style.display = 'none';
+
+    const offerProds = window._cache.products.filter(p => isActiveOffer(p));
+    document.getElementById('breadcrumb-prod').innerHTML =
+      '<span style="color:#ff8a8a;font-weight:700;">🔥 Offer Zone</span> › Active Deals';
+
+    // Hide filter row for offer zone
+    document.getElementById('prod-filter-row').style.display = 'none';
+
+    const grid = document.getElementById('prod-grid');
+    grid.innerHTML = '';
+
+    if (!offerProds.length) {
+      grid.innerHTML = '<div style="color:rgba(245,237,228,0.3);padding:32px;grid-column:1/-1;text-align:center;">No active offers right now. Check back soon!</div>';
+    } else {
+      const { categories, catalogues } = window._cache;
+      offerProds.forEach(p => {
+        const cat    = catalogues.find(x=>x.id===p.catalogueId);
+        const subcat = categories.find(x=>x.id===p.categoryId);
+        const card = document.createElement('div');
+        card.className = 'pcard is-offer';
+        card.innerHTML = `
+          <div class="pvisual" style="height:190px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:rgba(139,26,46,0.06);position:relative;">
+            ${p.imageBase64 ? `<img src="${p.imageBase64}" style="width:100%;height:100%;object-fit:cover;"/>` : `<span style="font-size:56px;">📦</span>`}
+            <span class="ptag" style="background:linear-gradient(135deg,#8B1A2E,#C0304A);">🔥 OFFER</span>
+          </div>
+          <div class="pbody">
+            <div class="pcat" style="color:#ff8a8a;">${cat?.name||''} › ${subcat?.name||''}</div>
+            <div class="pname">${p.name}</div>
+            <div class="pdesc">${p.description||''}</div>
+            ${buildPriceHtml(p)}
+          </div>`;
+        grid.appendChild(card);
+      });
+    }
+    document.getElementById('products-row').style.display = 'block';
+  };
+
   window.showProducts = function(subCatId, subCatName, catName) {
     window._state.category = subCatId;
     document.getElementById('categories-row').style.display = 'none';
     const prods = window._cache.products.filter(p => p.categoryId === subCatId);
     document.getElementById('breadcrumb-prod').textContent = catName + ' › ' + subCatName + ' › Products';
+    document.getElementById('prod-filter-row').style.display = 'flex';
     const grid = document.getElementById('prod-grid');
     grid.innerHTML = '';
     if (!prods.length) {
       grid.innerHTML = '<div style="color:rgba(245,237,228,0.3);padding:32px;grid-column:1/-1;text-align:center;">No products yet in this category.</div>';
     } else {
       prods.forEach(p => {
+        const active = isActiveOffer(p);
         const card = document.createElement('div');
-        card.className = 'pcard';
+        card.className = 'pcard' + (active ? ' is-offer' : '');
         card.innerHTML = `
           <div class="pvisual" style="height:190px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:rgba(201,149,106,0.04);">
             ${p.imageBase64 ? `<img src="${p.imageBase64}" style="width:100%;height:100%;object-fit:cover;"/>` : `<span style="font-size:56px;">📦</span>`}
-            ${p.tag ? `<span class="ptag">${p.tag}</span>` : ''}
+            ${active ? `<span class="ptag" style="background:linear-gradient(135deg,#8B1A2E,#C0304A);">🔥 OFFER</span>` : (p.tag ? `<span class="ptag">${p.tag}</span>` : '')}
           </div>
           <div class="pbody">
             <div class="pcat">${subCatName}</div>
             <div class="pname">${p.name}</div>
             <div class="pdesc">${p.description||''}</div>
+            ${buildPriceHtml(p)}
           </div>`;
         grid.appendChild(card);
       });
@@ -1486,6 +1788,12 @@
   };
   window.goBackToCategories = function() {
     document.getElementById('products-row').style.display = 'none';
+    document.getElementById('prod-filter-row').style.display = 'flex';
+    // If we came from offer zone, go back to catalogue tabs directly
+    if (window._state.catalogue === '__offer_zone__') {
+      document.getElementById('catalogue-tabs').style.display = 'flex';
+      return;
+    }
     const c = window._cache.catalogues.find(x=>x.id===window._state.catalogue);
     if (c) showCategories(c.id, c.name);
   };
@@ -1518,10 +1826,21 @@
       name = document.getElementById('fp2-name').value.trim();
       const tag  = document.getElementById('fp2-tag').value.trim();
       const desc = document.getElementById('fp2-desc').value.trim();
+      const regularPrice   = document.getElementById('fp2-regular-price').value.trim();
+      const discountPrice  = document.getElementById('fp2-discount-price').value.trim();
+      const offerFrom      = document.getElementById('fp2-offer-from').value;
+      const offerTo        = document.getElementById('fp2-offer-to').value;
       if (!catalogueId || !categoryId || !name) { showMsg('product','Fill catalogue, category, name','error'); return; }
       colName = 'products';
       editId = window._editIds?.product;
-      data = { catalogueId, categoryId, name, tag, description: desc, updatedAt: new Date().toISOString() };
+      data = {
+        catalogueId, categoryId, name, tag, description: desc,
+        regularPrice:   regularPrice   ? Number(regularPrice)  : null,
+        discountPrice:  discountPrice  ? Number(discountPrice) : null,
+        offerFrom:      offerFrom  || null,
+        offerTo:        offerTo    || null,
+        updatedAt: new Date().toISOString()
+      };
     }
 
     // Handle image
@@ -1673,8 +1992,13 @@
         <div style="flex:1;min-width:0;">
           <div style="font-size:14px;color:#F5EDE4;font-weight:600;">${p.name}</div>
           <div style="font-size:11px;color:rgba(201,149,106,0.6);margin-top:2px;">${cat?.name||'?'} › ${subcat?.name||'?'}${p.tag?' · '+p.tag:''}</div>
+          ${isActiveOffer(p) ? `<div style="display:inline-flex;align-items:center;gap:5px;margin-top:4px;background:rgba(139,26,46,0.2);border:1px solid rgba(139,26,46,0.4);border-radius:100px;padding:2px 8px;font-size:9px;font-weight:700;color:#ff8a8a;letter-spacing:1px;">🔥 ACTIVE OFFER · ₹${Number(p.discountPrice).toLocaleString('en-IN')}${p.offerTo?' · ends '+p.offerTo:''}</div>` :
+          (p.regularPrice ? `<div style="font-size:11px;color:rgba(201,149,106,0.5);margin-top:2px;">₹${Number(p.regularPrice).toLocaleString('en-IN')}</div>` : '')}
         </div>
         <button onclick="editItem('product','${p.id}')" style="background:rgba(201,149,106,0.1);border:1px solid rgba(201,149,106,0.2);color:rgba(201,149,106,0.8);border-radius:7px;padding:7px 12px;font-size:10px;font-weight:700;cursor:pointer;white-space:nowrap;">Edit</button>
+        <button onclick="shareProductOnWhatsApp('${p.id}')" title="Share on WhatsApp" style="background:rgba(18,140,126,0.15);border:1px solid rgba(37,211,102,0.35);color:#25D366;border-radius:7px;padding:7px 10px;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;" title="Share on WhatsApp">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.858L.057 23.504a.5.5 0 0 0 .609.61l5.76-1.512A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.806 9.806 0 0 1-5.031-1.383l-.36-.214-3.733.979.997-3.648-.234-.374A9.789 9.789 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+        </button>
         <button onclick="deleteDoc2('products','${p.id}')" style="background:rgba(139,26,46,0.15);border:1px solid rgba(139,26,46,0.3);color:#ff8a8a;border-radius:7px;padding:7px 10px;font-size:11px;cursor:pointer;">🗑</button>`;
       list.appendChild(row);
     });
@@ -1715,6 +2039,11 @@
       document.getElementById('fp2-name').value = item.name || '';
       document.getElementById('fp2-tag').value  = item.tag  || '';
       document.getElementById('fp2-desc').value = item.description || '';
+      document.getElementById('fp2-regular-price').value  = item.regularPrice  != null ? item.regularPrice  : '';
+      document.getElementById('fp2-discount-price').value = item.discountPrice != null ? item.discountPrice : '';
+      document.getElementById('fp2-offer-from').value = item.offerFrom || '';
+      document.getElementById('fp2-offer-to').value   = item.offerTo   || '';
+      toggleOfferDates();
     }
 
     if (item.imageBase64) {
@@ -1733,6 +2062,20 @@
     }
   });
 
+  // ── Auto-login with saved credentials ──
+  (async () => {
+    try {
+      const saved = JSON.parse(localStorage.getItem('ufe_admin_creds') || 'null');
+      if (saved && saved.email && saved.pass) {
+        await signInWithEmailAndPassword(auth, saved.email, saved.pass);
+        // Panel opens via onAuthStateChanged above once auth fires
+      }
+    } catch(e) {
+      // Saved credentials invalid — clear them silently
+      localStorage.removeItem('ufe_admin_creds');
+    }
+  })();
+
   // load frontend on page load (no auth required for reading)
   loadAll();
 </script>
@@ -1741,6 +2084,29 @@
   // Navbar scroll
   const nav = document.getElementById('navbar');
   window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+
+  // ── Mobile Nav ──
+  function toggleMobileNav() {
+    const drawer = document.getElementById('mobileDrawer');
+    const hamburger = document.getElementById('navHamburger');
+    const isOpen = drawer.classList.contains('open');
+    if (isOpen) {
+      drawer.classList.remove('open');
+      hamburger.classList.remove('open');
+      document.body.style.overflow = '';
+    } else {
+      drawer.classList.add('open');
+      hamburger.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+  function closeMobileNav() {
+    document.getElementById('mobileDrawer').classList.remove('open');
+    document.getElementById('navHamburger').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  // Close mobile nav on ESC
+  document.addEventListener('keydown', e => { if(e.key==='Escape') closeMobileNav(); });
 
   // Scroll reveal
   const obs = new IntersectionObserver(entries => {
@@ -1752,8 +2118,15 @@
   function openAdminLogin() {
     document.getElementById('adminLoginModal').style.display = 'flex';
     document.getElementById('adminLoginErr').style.display = 'none';
-    document.getElementById('adminEmail').value = '';
-    document.getElementById('adminPass').value = '';
+    // Pre-fill saved credentials
+    const saved = JSON.parse(localStorage.getItem('ufe_admin_creds') || 'null');
+    if (saved) {
+      document.getElementById('adminEmail').value = saved.email || '';
+      document.getElementById('adminPass').value = saved.pass || '';
+    } else {
+      document.getElementById('adminEmail').value = '';
+      document.getElementById('adminPass').value = '';
+    }
     setTimeout(()=>document.getElementById('adminEmail').focus(), 80);
   }
   function closeAdminLogin() { document.getElementById('adminLoginModal').style.display='none'; }
@@ -1766,6 +2139,8 @@
     try {
       const {auth,signInWithEmailAndPassword} = window._fb;
       await signInWithEmailAndPassword(auth, email, pass);
+      // Save credentials for auto-login next time
+      localStorage.setItem('ufe_admin_creds', JSON.stringify({email, pass}));
       closeAdminLogin();
       document.getElementById('adminPanel').style.display='block';
       document.body.style.overflow='hidden';
@@ -1811,7 +2186,19 @@
       // clear fields
       if(type==='catalogue'){ document.getElementById('fc-name').value=''; document.getElementById('fc-icon').value=''; }
       if(type==='category') { document.getElementById('fc2-name').value=''; document.getElementById('fc2-icon').value=''; document.getElementById('fc2-cat').value=''; }
-      if(type==='product')  { document.getElementById('fp2-name').value=''; document.getElementById('fp2-tag').value=''; document.getElementById('fp2-desc').value=''; document.getElementById('fp2-cat').value=''; document.getElementById('fp2-subcat').value=''; }
+      if(type==='product')  {
+        document.getElementById('fp2-name').value='';
+        document.getElementById('fp2-tag').value='';
+        document.getElementById('fp2-desc').value='';
+        document.getElementById('fp2-cat').value='';
+        document.getElementById('fp2-subcat').value='';
+        document.getElementById('fp2-regular-price').value='';
+        document.getElementById('fp2-discount-price').value='';
+        document.getElementById('fp2-offer-from').value='';
+        document.getElementById('fp2-offer-to').value='';
+        document.getElementById('offer-dates-block').style.display='none';
+        document.getElementById('offer-hint').style.display='none';
+      }
       // reset image preview
       const previewId = type;
       const img = document.getElementById('fp-'+previewId);
@@ -1865,6 +2252,511 @@
     el.style.border = '1px solid '+(kind==='success'?'rgba(22,101,52,0.4)':'rgba(139,26,46,0.4)');
     el.style.color  = kind==='success'?'#86efac':'#ff8a8a';
   }
+
+  // Show/hide offer date fields when discount price is entered
+  function toggleOfferDates() {
+    const hasDiscount = document.getElementById('fp2-discount-price').value.trim() !== '';
+    const datesBlock = document.getElementById('offer-dates-block');
+    const hint       = document.getElementById('offer-hint');
+    datesBlock.style.display = hasDiscount ? 'grid' : 'none';
+    hint.style.display       = hasDiscount ? 'block' : 'none';
+  }
+</script>
+<!-- ════════ WHATSAPP SHARE MODAL ════════ -->
+<!-- ════════ WHATSAPP SHARE MODAL ════════ -->
+<style>
+  #waShareModal { display:none; position:fixed; inset:0; z-index:20000;
+    background:rgba(0,0,0,0.78); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+    align-items:center; justify-content:center; overflow-y:auto; padding:16px; }
+  .wa-modal-box {
+    background:linear-gradient(160deg,#160C0F,#1a0e12,#1E1114);
+    border:1px solid rgba(37,211,102,0.22); border-radius:22px;
+    padding:28px; max-width:500px; width:100%; margin:auto; position:relative;
+    box-shadow:0 28px 90px rgba(0,0,0,0.75), 0 0 0 1px rgba(37,211,102,0.06);
+  }
+  /* WhatsApp bubble preview */
+  .wa-bubble-wrap {
+    background:#0b1f15; border-radius:14px; padding:14px 16px;
+    margin-bottom:18px; border:1px solid rgba(37,211,102,0.15);
+    position:relative;
+  }
+  .wa-bubble-label {
+    font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+    color:rgba(37,211,102,0.5); margin-bottom:10px; display:flex; align-items:center; gap:6px;
+  }
+  .wa-bubble {
+    background:#1f4028; border-radius:4px 12px 12px 12px;
+    overflow:hidden; max-width:320px; box-shadow:0 2px 8px rgba(0,0,0,0.4);
+  }
+  .wa-bubble-img {
+    width:100%; max-height:200px; object-fit:cover; display:block;
+  }
+  .wa-bubble-img-placeholder {
+    width:100%; height:140px; background:rgba(37,211,102,0.06);
+    display:flex; align-items:center; justify-content:center;
+    font-size:44px; color:rgba(37,211,102,0.25);
+  }
+  .wa-bubble-text {
+    padding:10px 12px 6px; font-size:12px; color:#e9ffe9;
+    line-height:1.55; white-space:pre-wrap; word-break:break-word;
+    font-family:'DM Sans',sans-serif; max-height:140px; overflow:hidden;
+    mask-image:linear-gradient(180deg,#000 60%,transparent 100%);
+    -webkit-mask-image:linear-gradient(180deg,#000 60%,transparent 100%);
+  }
+  .wa-bubble-time {
+    text-align:right; font-size:10px; color:rgba(255,255,255,0.35);
+    padding:0 10px 8px; font-family:'DM Sans',sans-serif;
+  }
+  /* Status pill */
+  .wa-status-pill {
+    display:inline-flex; align-items:center; gap:7px;
+    border-radius:100px; padding:7px 14px; font-size:11.5px;
+    font-weight:600; margin-bottom:16px; line-height:1.4;
+  }
+  .wa-status-green { background:rgba(37,211,102,0.1); border:1px solid rgba(37,211,102,0.3); color:rgba(37,211,102,0.95); }
+  .wa-status-amber { background:rgba(255,180,50,0.1); border:1px solid rgba(255,180,50,0.3); color:rgba(255,200,80,0.95); }
+</style>
+
+<div id="waShareModal">
+  <div class="wa-modal-box">
+
+    <!-- Close -->
+    <button onclick="closeWaModal()" style="position:absolute;top:14px;right:14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:rgba(245,237,228,0.5);border-radius:8px;width:32px;height:32px;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;">✕</button>
+
+    <!-- Header -->
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px;">
+      <div style="width:42px;height:42px;border-radius:12px;background:rgba(37,211,102,0.12);border:1px solid rgba(37,211,102,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.858L.057 23.504a.5.5 0 0 0 .609.61l5.76-1.512A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.806 9.806 0 0 1-5.031-1.383l-.36-.214-3.733.979.997-3.648-.234-.374A9.789 9.789 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+      </div>
+      <div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:#E8C9A0;">Share on WhatsApp</div>
+        <div style="font-size:11px;color:rgba(245,237,228,0.4);margin-top:1px;">Image + message in one bubble</div>
+      </div>
+    </div>
+
+    <!-- Live WhatsApp bubble preview -->
+    <div class="wa-bubble-wrap">
+      <div class="wa-bubble-label">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.858L.057 23.504a.5.5 0 0 0 .609.61l5.76-1.512A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.806 9.806 0 0 1-5.031-1.383l-.36-.214-3.733.979.997-3.648-.234-.374A9.789 9.789 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+        Preview — will appear exactly like this in WhatsApp
+      </div>
+      <div class="wa-bubble">
+        <div id="wa-bubble-img-area"></div>
+        <div id="wa-bubble-text" class="wa-bubble-text"></div>
+        <div class="wa-bubble-time">now ✓✓</div>
+      </div>
+    </div>
+
+    <!-- Status pill (shows what sharing method will be used) -->
+    <div id="wa-status-pill" class="wa-status-pill wa-status-green" style="display:none;"></div>
+
+    <!-- Editable message -->
+    <div style="margin-bottom:16px;">
+      <label style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(201,149,106,0.8);display:block;margin-bottom:7px;">✏️ Edit Message</label>
+      <textarea id="wa-msg-preview" rows="6" oninput="syncWaBubbleText()" style="width:100%;background:rgba(37,211,102,0.03);border:1px solid rgba(37,211,102,0.18);border-radius:10px;padding:11px 13px;color:#F5EDE4;font-size:12.5px;line-height:1.65;outline:none;resize:vertical;font-family:'DM Sans',sans-serif;" onfocus="this.style.borderColor='rgba(37,211,102,0.45)'" onblur="this.style.borderColor='rgba(37,211,102,0.18)'"></textarea>
+    </div>
+
+    <!-- Phone number -->
+    <div style="margin-bottom:20px;">
+      <label style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(201,149,106,0.8);display:block;margin-bottom:7px;">📱 Send to Number (optional)</label>
+      <div style="position:relative;">
+        <span style="position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:13px;color:rgba(245,237,228,0.4);pointer-events:none;">+91</span>
+        <input id="wa-phone" type="tel" placeholder="9876543210 — or leave blank to pick any chat" maxlength="15"
+          style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(201,149,106,0.18);border-radius:9px;padding:11px 13px 11px 42px;color:#F5EDE4;font-size:13px;outline:none;font-family:'DM Sans',sans-serif;"
+          onfocus="this.style.borderColor='rgba(37,211,102,0.4)'" onblur="this.style.borderColor='rgba(201,149,106,0.18)'"/>
+      </div>
+      <div style="font-size:10px;color:rgba(245,237,228,0.25);margin-top:5px;">Leave blank → WhatsApp opens, you choose contact / group / community</div>
+    </div>
+
+    <!-- Buttons -->
+    <div style="display:flex;gap:10px;">
+      <button id="wa-main-btn" onclick="doWhatsAppShare()" style="flex:1;background:linear-gradient(135deg,#128C7E,#25D366);color:#fff;border:none;border-radius:11px;padding:14px 20px;font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px;box-shadow:0 4px 24px rgba(37,211,102,0.28);">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.858L.057 23.504a.5.5 0 0 0 .609.61l5.76-1.512A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.806 9.806 0 0 1-5.031-1.383l-.36-.214-3.733.979.997-3.648-.234-.374A9.789 9.789 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+        <span id="wa-main-btn-label">Send on WhatsApp</span>
+      </button>
+      <button onclick="closeWaModal()" style="background:rgba(255,255,255,0.05);border:1px solid rgba(201,149,106,0.2);color:rgba(245,237,228,0.5);border-radius:11px;padding:14px 20px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">Cancel</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // ═══════════════════════════════════════════════════════════════
+  //  WHATSAPP SHARE — Canvas merge: product text baked INTO image
+  //  Result: ONE single image shared → ONE bubble in WhatsApp
+  // ═══════════════════════════════════════════════════════════════
+
+  window._waProduct = null;
+
+  // ── base64 data-URL → File object ──────────────────────────────
+  function dataURLtoFile(dataUrl, filename) {
+    const [header, data] = dataUrl.split(',');
+    const mime = header.match(/:(.*?);/)[1];
+    const bytes = atob(data);
+    const arr = new Uint8Array(bytes.length);
+    for (let i = 0; i < bytes.length; i++) arr[i] = bytes.charCodeAt(i);
+    return new File([arr], filename, { type: mime });
+  }
+
+  // ── Keep bubble text in sync with textarea edits ───────────────
+  window.syncWaBubbleText = function() {
+    const val = document.getElementById('wa-msg-preview').value;
+    document.getElementById('wa-bubble-text').textContent = val;
+    // Rebuild canvas preview when text changes
+    if (window._waProduct) _rebuildCanvasPreview(window._waProduct, val);
+  };
+
+  // ── Word-wrap a string into lines that fit within maxW ──────────
+  function _wrapWords(ctx, text, maxW) {
+    if (!text.trim()) return [''];
+    const words = text.split(' ');
+    const lines = [];
+    let current = '';
+    for (const word of words) {
+      const test = current ? current + ' ' + word : word;
+      if (ctx.measureText(test).width > maxW && current) {
+        lines.push(current);
+        current = word;
+      } else {
+        current = test;
+      }
+    }
+    if (current) lines.push(current);
+    return lines.length ? lines : [text];
+  }
+
+  // ── Parse one raw message line → style metadata ──────────────────
+  function _lineStyle(raw, isFirst, FONT_SIZE, textColor, goldColor, dimColor) {
+    const plain    = raw.replace(/\*/g,'').replace(/~~/g,'').replace(/^_(.*)_$/, '$1');
+    const isBold   = raw.includes('*');
+    const isStrike = raw.includes('~~');
+    const isItalic = /^_.*_$/.test(raw.trim());
+    const isPriceLine = raw.includes('Price:') || raw.includes('₹');
+    const isDivider   = /^─{5,}/.test(plain.trim());
+
+    let color = textColor, fontSize = FONT_SIZE, fontStyle = 'normal', fontWeight = 'normal';
+    if (isFirst)                       { color = goldColor;   fontSize = FONT_SIZE + 3; fontWeight = 'bold'; }
+    else if (isBold && isPriceLine)    { color = '#7ef07e';   fontSize = FONT_SIZE + 1; fontWeight = 'bold'; }
+    else if (isBold)                   { color = textColor;   fontWeight = 'bold'; }
+    else if (isStrike)                 { color = dimColor; }
+    else if (isItalic)                 { color = dimColor;    fontStyle = 'italic'; }
+
+    return { plain, isBold, isStrike, isItalic, isDivider, color, fontSize, fontStyle, fontWeight };
+  }
+
+  // ── Measure total text-panel height (with wrapping) ─────────────
+  function _measureTextBlock(rawLines, W, PAD, FONT_SIZE, LINE_H) {
+    const measCanvas = document.createElement('canvas');
+    measCanvas.width = W;
+    const mCtx = measCanvas.getContext('2d');
+    const maxW = W - PAD * 2;
+    let h = PAD;
+    rawLines.forEach((raw, i) => {
+      const plain = raw.replace(/\*/g,'').replace(/~~/g,'').replace(/^_(.*)_$/, '$1');
+      if (plain.trim() === '') { h += LINE_H * 0.5; return; }
+      const isDivider = /^─{5,}/.test(plain.trim());
+      if (isDivider) { h += LINE_H * 0.65; return; }
+      const isBold = raw.includes('*');
+      const isFirst = i === 0;
+      const fs = isFirst ? FONT_SIZE + 3 : (isBold && (raw.includes('Price:') || raw.includes('₹'))) ? FONT_SIZE + 1 : FONT_SIZE;
+      mCtx.font = `${isBold || isFirst ? 'bold' : 'normal'} ${fs}px Arial, sans-serif`;
+      const wrapped = _wrapWords(mCtx, plain, maxW);
+      h += wrapped.length * LINE_H;
+    });
+    h += PAD + 8;
+    return h;
+  }
+
+  // ── Draw all text lines onto ctx with wrapping ───────────────────
+  function _drawTextBlock(ctx, rawLines, W, startY, FONT_SIZE, LINE_H, textColor, goldColor, dimColor) {
+    const PAD  = 32;
+    const maxW = W - PAD * 2;
+    let y = startY;
+
+    rawLines.forEach((raw, i) => {
+      const s = _lineStyle(raw, i === 0, FONT_SIZE, textColor, goldColor, dimColor);
+
+      if (raw.replace(/\*/g,'').replace(/~~/g,'').replace(/^_(.*)_$/, '$1').trim() === '') {
+        y += LINE_H * 0.5;
+        return;
+      }
+
+      if (s.isDivider) {
+        ctx.strokeStyle = 'rgba(232,255,232,0.22)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(PAD, y + LINE_H * 0.3);
+        ctx.lineTo(W - PAD, y + LINE_H * 0.3);
+        ctx.stroke();
+        y += LINE_H * 0.65;
+        return;
+      }
+
+      ctx.font = `${s.fontStyle} ${s.fontWeight} ${s.fontSize}px Arial, sans-serif`;
+      const wrapped = _wrapWords(ctx, s.plain, maxW);
+
+      wrapped.forEach((wline, wi) => {
+        ctx.fillStyle = s.color;
+        ctx.fillText(wline, PAD, y + s.fontSize);
+
+        if (s.isStrike) {
+          const tw = ctx.measureText(wline).width;
+          ctx.strokeStyle = dimColor;
+          ctx.lineWidth = 1.5;
+          ctx.beginPath();
+          ctx.moveTo(PAD, y + s.fontSize * 0.6);
+          ctx.lineTo(PAD + tw, y + s.fontSize * 0.6);
+          ctx.stroke();
+        }
+
+        y += LINE_H;
+      });
+    });
+  }
+
+  // ── Build the merged canvas: product image on top, text panel below ──
+  function _buildMergedCanvas(imgBase64, msgText) {
+    return new Promise(resolve => {
+      const W         = 800;
+      const PAD       = 32;
+      const FONT_SIZE = 22;
+      const LINE_H    = 36;
+      const shopGreen = '#1a3c2a';
+      const textColor = '#e8ffe8';
+      const goldColor = '#f0c060';
+      const dimColor  = 'rgba(232,255,232,0.55)';
+
+      const rawLines   = msgText.split('\n');
+      const textBlockH = _measureTextBlock(rawLines, W, PAD, FONT_SIZE, LINE_H);
+
+      const _render = (canvas, imgOffsetY) => {
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = shopGreen;
+        ctx.fillRect(0, imgOffsetY, W, textBlockH);
+
+        // Gold separator
+        ctx.strokeStyle = goldColor;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(0, imgOffsetY + 1);
+        ctx.lineTo(W, imgOffsetY + 1);
+        ctx.stroke();
+
+        _drawTextBlock(ctx, rawLines, W, imgOffsetY + PAD, FONT_SIZE, LINE_H, textColor, goldColor, dimColor);
+        resolve(canvas.toDataURL('image/jpeg', 0.92));
+      };
+
+      if (!imgBase64) {
+        const canvas = document.createElement('canvas');
+        canvas.width  = W;
+        canvas.height = textBlockH;
+        _render(canvas, 0);
+        return;
+      }
+
+      const img = new Image();
+      img.onload = () => {
+        const imgH = Math.round((img.height / img.width) * W);
+        const canvas = document.createElement('canvas');
+        canvas.width  = W;
+        canvas.height = imgH + textBlockH;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, W, imgH);
+        _render(canvas, imgH);
+      };
+      img.onerror = () => resolve(null);
+      img.src = imgBase64;
+    });
+  }
+
+  // ── Rebuild canvas preview in modal ──
+  async function _rebuildCanvasPreview(p, msg) {
+    const merged = await _buildMergedCanvas(p.imageBase64 || null, msg);
+    if (!merged) return;
+    const imgArea = document.getElementById('wa-bubble-img-area');
+    // Show merged canvas image in preview (text panel gone, replaced by canvas img)
+    imgArea.innerHTML = `<img src="${merged}" style="width:100%;display:block;border-radius:4px 4px 0 0;" />`;
+    // Hide separate text bubble (it's now baked in)
+    document.getElementById('wa-bubble-text').style.display = 'none';
+    document.getElementById('wa-bubble-time').style.paddingTop = '6px';
+    window._waMergedBase64 = merged;
+  }
+
+  // ── Keep bubble text in sync (also rebuilds canvas) ──
+  window.syncWaBubbleText = function() {
+    const val = document.getElementById('wa-msg-preview').value;
+    document.getElementById('wa-bubble-text').textContent = val;
+    if (window._waProduct) _rebuildCanvasPreview(window._waProduct, val);
+  };
+
+  // ── Open modal ─────────────────────────────────────────────────
+  window.shareProductOnWhatsApp = function(productId) {
+    let product = null;
+    if (productId && productId !== '__form__' && window._cache?.products) {
+      product = window._cache.products.find(p => p.id === productId);
+    }
+    if (!product) {
+      const name          = document.getElementById('fp2-name')?.value?.trim();
+      const tag           = document.getElementById('fp2-tag')?.value?.trim();
+      const desc          = document.getElementById('fp2-desc')?.value?.trim();
+      const regularPrice  = document.getElementById('fp2-regular-price')?.value?.trim();
+      const discountPrice = document.getElementById('fp2-discount-price')?.value?.trim();
+      const offerFrom     = document.getElementById('fp2-offer-from')?.value;
+      const offerTo       = document.getElementById('fp2-offer-to')?.value;
+      const catId         = document.getElementById('fp2-cat')?.value;
+      const subcatId      = document.getElementById('fp2-subcat')?.value;
+      const imgSrc        = document.getElementById('fp-product')?.src;
+      if (!name) { alert('Please fill in at least the product name before sharing.'); return; }
+      const cat    = window._cache?.catalogues?.find(c => c.id === catId);
+      const subcat = window._cache?.categories?.find(c => c.id === subcatId);
+      product = {
+        name, tag: tag||'', description: desc||'',
+        regularPrice:  regularPrice  ? Number(regularPrice)  : null,
+        discountPrice: discountPrice ? Number(discountPrice) : null,
+        offerFrom: offerFrom||null, offerTo: offerTo||null,
+        imageBase64: (imgSrc && imgSrc.startsWith('data:')) ? imgSrc : null,
+        _catName: cat?.name||'', _subcatName: subcat?.name||''
+      };
+    } else {
+      const cat    = window._cache?.catalogues?.find(c => c.id === product.catalogueId);
+      const subcat = window._cache?.categories?.find(c => c.id === product.categoryId);
+      product._catName    = cat?.name    || '';
+      product._subcatName = subcat?.name || '';
+    }
+    window._waProduct = product;
+    window._waMergedBase64 = null;
+    _buildWaModal(product);
+    document.getElementById('waShareModal').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  };
+
+  function _buildWaModal(p) {
+    const catLabel = [p._catName, p._subcatName].filter(Boolean).join(' › ');
+    const shopName = 'Usha Furniture & Electronics';
+    let msg = `🏪 *${shopName}*\n`;
+    msg += `${'─'.repeat(30)}\n\n`;
+    msg += `📦 *${p.name}*\n`;
+    if (catLabel) msg += `🏷️ ${catLabel}\n`;
+    if (p.tag)    msg += `✨ ${p.tag}\n`;
+    msg += `\n`;
+    if (p.discountPrice) {
+      msg += `💰 *Price: ₹${Number(p.discountPrice).toLocaleString('en-IN')}* 🔥 OFFER\n`;
+      if (p.regularPrice) {
+        const save = Math.round(100 - (p.discountPrice / p.regularPrice * 100));
+        msg += `~~MRP: ₹${Number(p.regularPrice).toLocaleString('en-IN')}~~ (Save ${save}%)\n`;
+      }
+      if (p.offerFrom || p.offerTo) {
+        msg += `⏰ Offer valid`;
+        if (p.offerFrom) msg += ` from ${p.offerFrom}`;
+        if (p.offerTo)   msg += ` to ${p.offerTo}`;
+        msg += `\n`;
+      }
+    } else if (p.regularPrice) {
+      msg += `💰 *Price: ₹${Number(p.regularPrice).toLocaleString('en-IN')}*\n`;
+    }
+    if (p.description) msg += `\n📝 ${p.description}\n`;
+    msg += `\n${'─'.repeat(30)}\n`;
+    msg += `📍 Thiruchendur, Tamil Nadu\n`;
+    msg += `📞 Contact us for more details!\n`;
+    msg += `\n_Usha Furniture & Electronics – Quality you can trust_ 🛋️`;
+
+    document.getElementById('wa-msg-preview').value = msg;
+    document.getElementById('wa-phone').value = '';
+
+    // Show raw image in bubble initially, canvas will replace it
+    const imgArea = document.getElementById('wa-bubble-img-area');
+    const bubbleText = document.getElementById('wa-bubble-text');
+    bubbleText.style.display = 'block';
+    bubbleText.textContent = msg;
+
+    if (p.imageBase64) {
+      imgArea.innerHTML = `<img src="${p.imageBase64}" class="wa-bubble-img"/>`;
+    } else {
+      imgArea.innerHTML = `<div class="wa-bubble-img-placeholder">📦</div>`;
+    }
+
+    // Status pill
+    const pillEl   = document.getElementById('wa-status-pill');
+    const btnLabel = document.getElementById('wa-main-btn-label');
+    pillEl.className   = 'wa-status-pill wa-status-green';
+    pillEl.innerHTML   = '✅ Text is <strong>baked into the image</strong> — sends as <strong>one single bubble</strong> in WhatsApp';
+    pillEl.style.display = 'inline-flex';
+    btnLabel.textContent = '📸 Share as One Image';
+
+    // Build the merged canvas async
+    _rebuildCanvasPreview(p, msg);
+  }
+
+  // ── Main send button ───────────────────────────────────────────
+  window.doWhatsAppShare = async function() {
+    const p   = window._waProduct;
+    const msg = document.getElementById('wa-msg-preview').value.trim();
+
+    // Get merged image (canvas with text baked in)
+    let mergedBase64 = window._waMergedBase64;
+    if (!mergedBase64) {
+      mergedBase64 = await _buildMergedCanvas(p?.imageBase64 || null, msg);
+    }
+
+    if (!mergedBase64) {
+      // No image at all — text only fallback
+      _fallbackTextOnly(msg);
+      return;
+    }
+
+    const safeName = (p?.name || 'product').replace(/[^a-zA-Z0-9]/g, '_');
+    const imgFile  = dataURLtoFile(mergedBase64, safeName + '.jpg');
+
+    // Try Web Share API (mobile) — shares ONE image file, no caption needed
+    // because the caption text is already drawn into the image itself
+    if (navigator.canShare && navigator.canShare({ files: [imgFile] })) {
+      navigator.share({ files: [imgFile] })
+        .then(() => closeWaModal())
+        .catch(err => {
+          if (err.name !== 'AbortError') _downloadMerged(mergedBase64, safeName);
+        });
+    } else {
+      // Desktop: download the merged image
+      _downloadMerged(mergedBase64, safeName);
+    }
+  };
+
+  function _downloadMerged(base64, safeName) {
+    const a = document.createElement('a');
+    a.href = base64;
+    a.download = safeName + '_whatsapp.jpg';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    // Show instruction
+    const pill = document.getElementById('wa-status-pill');
+    pill.className = 'wa-status-pill wa-status-amber';
+    pill.innerHTML = '⬇️ Image downloaded! Open WhatsApp → attach this image → send. Text is already on the image.';
+    setTimeout(() => closeWaModal(), 2500);
+  }
+
+  function _fallbackTextOnly(msg) {
+    let phone = document.getElementById('wa-phone').value.trim().replace(/\D/g,'');
+    if (phone.length === 10) phone = '91' + phone;
+    const url = phone
+      ? `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`
+      : `https://wa.me/?text=${encodeURIComponent(msg)}`;
+    window.open(url, '_blank');
+    closeWaModal();
+  }
+
+  window.closeWaModal = function() {
+    document.getElementById('waShareModal').style.display = 'none';
+    document.body.style.overflow = 'hidden';
+  };
+
+  document.getElementById('waShareModal').addEventListener('click', function(e) {
+    if (e.target === this) closeWaModal();
+  });
+
+  function patchWaFormBtn() {
+    const btn = document.getElementById('btn-wa-form');
+    if (btn) btn.style.display = 'flex';
+  }
+  patchWaFormBtn();
+  document.addEventListener('DOMContentLoaded', patchWaFormBtn);
 </script>
 </body>
-</html>
