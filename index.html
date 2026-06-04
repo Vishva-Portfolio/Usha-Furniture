@@ -1297,41 +1297,95 @@
   </div>
 </div>
 
+<!-- ════════ ADMIN STYLES ════════ -->
+<style>
+  .admin-form{background:rgba(255,255,255,0.03);border:1px solid rgba(201,149,106,0.18);border-radius:16px;padding:24px;margin-bottom:22px;}
+  .flbl{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(201,149,106,0.8);display:block;margin-bottom:7px;}
+  .finput{width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(201,149,106,0.18);border-radius:9px;padding:11px 13px;color:#F5EDE4;font-size:13px;outline:none;font-family:'DM Sans',sans-serif;box-sizing:border-box;}
+  .finput:focus{border-color:rgba(201,149,106,0.5);background:rgba(255,255,255,0.07);}
+  select.finput option{background:#1a0c10;color:#F5EDE4;}
+  textarea.finput{resize:vertical;}
+  .dropzone{border:2px dashed rgba(201,149,106,0.25);border-radius:12px;padding:24px;text-align:center;cursor:pointer;transition:all 0.2s;background:rgba(255,255,255,0.02);}
+  .dropzone:hover{border-color:rgba(201,149,106,0.55);background:rgba(201,149,106,0.04);}
+  .dz-inner{color:rgba(201,149,106,0.7);font-size:13px;font-weight:500;}
+  .form-msg{padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:12px;text-align:center;}
+  .btn-save{background:linear-gradient(135deg,#7A4A2E,#C9956A);color:#0E080A;border:none;border-radius:9px;padding:11px 26px;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;}
+  .btn-cancel{background:rgba(255,255,255,0.05);border:1px solid rgba(201,149,106,0.2);color:rgba(245,237,228,0.5);border-radius:9px;padding:11px 20px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;}
+  .admin-card{background:rgba(255,255,255,0.035);border:1px solid rgba(201,149,106,0.18);border-radius:14px;overflow:hidden;transition:all 0.3s;}
+  .admin-card:hover{border-color:rgba(201,149,106,0.35);transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,0.4);}
+
+  /* ── Admin Panel Mobile Responsive ── */
+  #adminPanel{overflow-x:hidden;}
+  .admin-tabs-bar{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+  .admin-tabs-bar::-webkit-scrollbar{display:none;}
+  .admin-tabs-bar>div{min-width:max-content;}
+  .admin-body-pad{padding:20px 16px;}
+
+  /* Role badges */
+  .role-badge-admin{background:linear-gradient(135deg,rgba(201,149,106,0.25),rgba(201,149,106,0.1));border:1px solid rgba(201,149,106,0.45);color:#E8C9A0;font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border-radius:100px;}
+  .role-badge-staff{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:rgba(245,237,228,0.5);font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border-radius:100px;}
+  .role-row{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid rgba(201,149,106,0.07);transition:background 0.2s;flex-wrap:wrap;}
+  .role-row:hover{background:rgba(201,149,106,0.04);}
+
+  /* Mobile admin fixes */
+  @media(max-width:600px){
+    .admin-tabs-bar>div{gap:5px;padding:4px;}
+    .admin-tabs-bar button{font-size:9px!important;padding:8px 6px!important;letter-spacing:0.5px!important;}
+    .admin-body-pad{padding:14px 12px!important;}
+    .admin-form{padding:16px 14px;}
+    #list-catalogue,#list-category{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))!important;gap:10px!important;}
+    .btn-save,.btn-cancel{padding:10px 16px!important;font-size:10px!important;}
+  }
+</style>
+
 <!-- ════════ ADMIN PANEL ════════ -->
 <div id="adminPanel" style="display:none;position:fixed;inset:0;z-index:10000;background:#0E080A;overflow-y:auto;">
   <div style="min-height:100vh;">
     <!-- Admin Navbar -->
-    <div style="background:linear-gradient(135deg,#160C0F,#1E1114);border-bottom:1px solid rgba(201,149,106,0.2);padding:0 28px;height:64px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 4px 24px rgba(0,0,0,0.5);">
+    <div style="background:linear-gradient(135deg,#160C0F,#1E1114);border-bottom:1px solid rgba(201,149,106,0.2);padding:0 16px;min-height:64px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 4px 24px rgba(0,0,0,0.5);flex-wrap:wrap;gap:8px;padding-top:10px;padding-bottom:10px;">
       <div style="display:flex;align-items:center;gap:12px;">
-        <div style="width:36px;height:36px;border-radius:50%;background:rgba(201,149,106,0.12);border:1px solid rgba(201,149,106,0.3);display:flex;align-items:center;justify-content:center;font-size:16px;">⚙️</div>
+        <div style="width:36px;height:36px;border-radius:50%;background:rgba(201,149,106,0.12);border:1px solid rgba(201,149,106,0.3);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">⚙️</div>
         <div>
           <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:#E8C9A0;">Admin Panel</div>
           <div style="font-size:9px;color:rgba(201,149,106,0.6);letter-spacing:2px;text-transform:uppercase;">Usha Furniture & Electronics</div>
         </div>
       </div>
-      <div style="display:flex;align-items:center;gap:16px;">
-        <div id="adminUserLabel" style="font-size:12px;color:rgba(245,237,228,0.4);"></div>
-        <button onclick="adminLogout()" style="background:rgba(139,26,46,0.2);border:1px solid rgba(139,26,46,0.4);color:#ff8a8a;border-radius:8px;padding:9px 16px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">Logout</button>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+        <div id="adminUserLabel" style="font-size:11px;color:rgba(245,237,228,0.4);max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></div>
+        <div id="adminRolePill" style="display:none;"></div>
+        <button onclick="adminLogout()" style="background:rgba(139,26,46,0.2);border:1px solid rgba(139,26,46,0.4);color:#ff8a8a;border-radius:8px;padding:8px 14px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">Logout</button>
       </div>
     </div>
 
     <!-- Admin Body -->
-    <div style="padding:32px 28px;max-width:1100px;margin:0 auto;">
-      <!-- Tabs -->
-      <div style="display:flex;gap:8px;margin-bottom:32px;background:rgba(255,255,255,0.03);border:1px solid rgba(201,149,106,0.15);border-radius:14px;padding:5px;">
-        <button id="atab-catalogue" onclick="aTab('catalogue')" style="flex:1;padding:10px;border-radius:10px;border:none;background:linear-gradient(135deg,rgba(201,149,106,0.2),rgba(201,149,106,0.08));color:#E8C9A0;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">📂 Catalogues</button>
-        <button id="atab-category" onclick="aTab('category')" style="flex:1;padding:10px;border-radius:10px;border:none;background:transparent;color:rgba(245,237,228,0.4);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">🏷️ Categories</button>
-        <button id="atab-product" onclick="aTab('product')" style="flex:1;padding:10px;border-radius:10px;border:none;background:transparent;color:rgba(245,237,228,0.4);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">📦 Products</button>
+    <div style="padding:24px 16px;max-width:1100px;margin:0 auto;" class="admin-body-pad">
+      <!-- Tabs — horizontally scrollable on mobile -->
+      <div class="admin-tabs-bar" style="margin-bottom:28px;">
+        <div style="display:flex;gap:6px;background:rgba(255,255,255,0.03);border:1px solid rgba(201,149,106,0.15);border-radius:14px;padding:5px;min-width:max-content;">
+          <button id="atab-catalogue" onclick="aTab('catalogue')" style="flex:1;min-width:90px;padding:10px 14px;border-radius:10px;border:none;background:linear-gradient(135deg,rgba(201,149,106,0.2),rgba(201,149,106,0.08));color:#E8C9A0;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">📂 Catalogues</button>
+          <button id="atab-category" onclick="aTab('category')" style="flex:1;min-width:90px;padding:10px 14px;border-radius:10px;border:none;background:transparent;color:rgba(245,237,228,0.4);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">🏷️ Categories</button>
+          <button id="atab-product" onclick="aTab('product')" style="flex:1;min-width:80px;padding:10px 14px;border-radius:10px;border:none;background:transparent;color:rgba(245,237,228,0.4);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">📦 Products</button>
+          <button id="atab-roles" onclick="aTab('roles')" style="display:none;flex:1;min-width:80px;padding:10px 14px;border-radius:10px;border:none;background:transparent;color:rgba(245,237,228,0.4);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">👥 Roles</button>
+        </div>
+      </div>
+
+      <!-- Staff notice banner -->
+      <div id="staff-notice" style="display:none;background:rgba(201,149,106,0.05);border:1px solid rgba(201,149,106,0.18);border-radius:12px;padding:12px 18px;margin-bottom:22px;align-items:center;gap:10px;">
+        <span style="font-size:18px;">👤</span>
+        <div>
+          <div style="font-size:12px;font-weight:700;color:rgba(245,237,228,0.8);">Staff Account</div>
+          <div style="font-size:11px;color:rgba(245,237,228,0.4);margin-top:2px;">You can add & edit <strong style="color:rgba(201,149,106,0.7);">categories</strong> and <strong style="color:rgba(201,149,106,0.7);">products</strong>. Catalogues and deletion require admin access.</div>
+        </div>
       </div>
 
       <!-- ══ CATALOGUES TAB ══ -->
       <div id="apanel-catalogue">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;flex-wrap:wrap;gap:12px;">
           <div>
-            <div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:#E8C9A0;">Catalogues</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:#E8C9A0;">Catalogues</div>
             <div style="font-size:12px;color:rgba(245,237,228,0.4);margin-top:3px;">Top-level: e.g. "Furniture", "Electronics"</div>
           </div>
-          <button onclick="openForm('catalogue')" style="background:linear-gradient(135deg,#7A4A2E,#C9956A);color:#0E080A;border:none;border-radius:10px;padding:11px 22px;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">➕ Add Catalogue</button>
+          <button id="btn-add-catalogue" onclick="openForm('catalogue')" style="background:linear-gradient(135deg,#7A4A2E,#C9956A);color:#0E080A;border:none;border-radius:10px;padding:11px 22px;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">➕ Add Catalogue</button>
         </div>
         <div id="form-catalogue" style="display:none;" class="admin-form">
           <div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:#E8C9A0;margin-bottom:18px;" id="form-catalogue-title">Add Catalogue</div>
@@ -1341,19 +1395,19 @@
           </div>
           <div style="margin-bottom:14px;"><label class="flbl">Cover Image (optional)</label><div class="dropzone" id="dz-catalogue" onclick="document.getElementById('fi-catalogue').click()"><div class="dz-inner" id="dzi-catalogue">🖼️ Click or drag image here<br><span style="font-size:11px;color:rgba(245,237,228,0.3);">JPG/PNG/WEBP max 1.5MB</span></div><img id="fp-catalogue" style="display:none;max-height:120px;border-radius:8px;margin:0 auto;"/></div><input id="fi-catalogue" type="file" accept="image/*" style="display:none;" onchange="prevImg(event,'catalogue')"/></div>
           <div id="msg-catalogue" class="form-msg" style="display:none;"></div>
-          <div style="display:flex;gap:10px;"><button onclick="saveDoc('catalogue')" class="btn-save">Save</button><button onclick="closeForm('catalogue')" class="btn-cancel">Cancel</button></div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;"><button onclick="saveDoc('catalogue')" class="btn-save">Save</button><button onclick="closeForm('catalogue')" class="btn-cancel">Cancel</button></div>
         </div>
         <div id="list-catalogue" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;"></div>
       </div>
 
       <!-- ══ CATEGORIES TAB ══ -->
       <div id="apanel-category" style="display:none;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;flex-wrap:wrap;gap:12px;">
           <div>
-            <div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:#E8C9A0;">Categories</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:#E8C9A0;">Categories</div>
             <div style="font-size:12px;color:rgba(245,237,228,0.4);margin-top:3px;">Second level: e.g. "Sofa", "Bed" under Furniture</div>
           </div>
-          <button onclick="openForm('category')" style="background:linear-gradient(135deg,#7A4A2E,#C9956A);color:#0E080A;border:none;border-radius:10px;padding:11px 22px;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">➕ Add Category</button>
+          <button id="btn-add-category" onclick="openForm('category')" style="background:linear-gradient(135deg,#7A4A2E,#C9956A);color:#0E080A;border:none;border-radius:10px;padding:11px 22px;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">➕ Add Category</button>
         </div>
         <div id="form-category" style="display:none;" class="admin-form">
           <div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:#E8C9A0;margin-bottom:18px;" id="form-category-title">Add Category</div>
@@ -1364,19 +1418,19 @@
           </div>
           <div style="margin-bottom:14px;"><label class="flbl">Category Image (optional)</label><div class="dropzone" id="dz-category" onclick="document.getElementById('fi-category').click()"><div class="dz-inner" id="dzi-category">🖼️ Click or drag image here<br><span style="font-size:11px;color:rgba(245,237,228,0.3);">JPG/PNG/WEBP max 1.5MB</span></div><img id="fp-category" style="display:none;max-height:120px;border-radius:8px;margin:0 auto;"/></div><input id="fi-category" type="file" accept="image/*" style="display:none;" onchange="prevImg(event,'category')"/></div>
           <div id="msg-category" class="form-msg" style="display:none;"></div>
-          <div style="display:flex;gap:10px;"><button onclick="saveDoc('category')" class="btn-save">Save</button><button onclick="closeForm('category')" class="btn-cancel">Cancel</button></div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;"><button onclick="saveDoc('category')" class="btn-save">Save</button><button onclick="closeForm('category')" class="btn-cancel">Cancel</button></div>
         </div>
         <div id="list-category" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;"></div>
       </div>
 
       <!-- ══ PRODUCTS TAB ══ -->
       <div id="apanel-product" style="display:none;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;flex-wrap:wrap;gap:12px;">
           <div>
-            <div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:#E8C9A0;">Products</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:#E8C9A0;">Products</div>
             <div style="font-size:12px;color:rgba(245,237,228,0.4);margin-top:3px;">Third level: e.g. "Low End Sofa", "High End Sofa" inside Sofa</div>
           </div>
-          <button onclick="openForm('product')" style="background:linear-gradient(135deg,#7A4A2E,#C9956A);color:#0E080A;border:none;border-radius:10px;padding:11px 22px;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">➕ Add Product</button>
+          <button id="btn-add-product" onclick="openForm('product')" style="background:linear-gradient(135deg,#7A4A2E,#C9956A);color:#0E080A;border:none;border-radius:10px;padding:11px 22px;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">➕ Add Product</button>
         </div>
         <div id="form-product" style="display:none;" class="admin-form">
           <div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:#E8C9A0;margin-bottom:18px;" id="form-product-title">Add Product</div>
@@ -1431,13 +1485,68 @@
             </button>
           </div>
         </div>
-        <!-- Products table -->
+        <!-- Products filter + table -->
         <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;">
-          <select id="filter-prod-cat" class="finput" style="flex:1;min-width:160px;" onchange="filterProdList()"><option value="">All Catalogues</option></select>
-          <select id="filter-prod-subcat" class="finput" style="flex:1;min-width:160px;" onchange="filterProdList()"><option value="">All Categories</option></select>
+          <select id="filter-prod-cat" class="finput" style="flex:1;min-width:140px;" onchange="filterProdList()"><option value="">All Catalogues</option></select>
+          <select id="filter-prod-subcat" class="finput" style="flex:1;min-width:140px;" onchange="filterProdList()"><option value="">All Categories</option></select>
         </div>
         <div id="list-product" style="background:rgba(255,255,255,0.025);border:1px solid rgba(201,149,106,0.12);border-radius:16px;overflow:hidden;"></div>
       </div>
+
+      <!-- ══ ROLES TAB (admin only) ══ -->
+      <div id="apanel-roles" style="display:none;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;flex-wrap:wrap;gap:12px;">
+          <div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:#E8C9A0;">Role Management</div>
+            <div style="font-size:12px;color:rgba(245,237,228,0.4);margin-top:3px;">Create new staff/admin accounts or manage existing roles</div>
+          </div>
+        </div>
+
+        <!-- Create / assign role form -->
+        <div class="admin-form" style="margin-bottom:22px;">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:#E8C9A0;margin-bottom:16px;">➕ Add New User & Assign Role</div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+            <div>
+              <label class="flbl">Email Address</label>
+              <input id="role-email-input" class="finput" type="email" placeholder="staff@example.com"/>
+            </div>
+            <div>
+              <label class="flbl">Password <span style="color:rgba(245,237,228,0.3);font-weight:400;text-transform:none;letter-spacing:0;">(for new accounts)</span></label>
+              <div style="position:relative;">
+                <input id="role-pass-input" class="finput" type="password" placeholder="min 6 characters" style="padding-right:40px;"/>
+                <button type="button" onclick="toggleRolePassVis()" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(201,149,106,0.5);cursor:pointer;font-size:14px;padding:0;" id="role-pass-eye">👁</button>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr auto;gap:12px;align-items:flex-end;margin-bottom:0;">
+            <div>
+              <label class="flbl">Role</label>
+              <select id="role-select-input" class="finput">
+                <option value="staff">👤 Staff — View only</option>
+                <option value="admin">⭐ Admin — Full access</option>
+              </select>
+            </div>
+            <button onclick="assignRole()" style="background:linear-gradient(135deg,#7A4A2E,#C9956A);color:#0E080A;border:none;border-radius:9px;padding:12px 22px;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;cursor:pointer;white-space:nowrap;">Assign Role</button>
+          </div>
+
+          <div id="msg-roles" class="form-msg" style="display:none;margin-top:14px;"></div>
+
+          <div style="margin-top:16px;padding:12px 14px;background:rgba(201,149,106,0.04);border:1px solid rgba(201,149,106,0.12);border-radius:10px;">
+            <div style="font-size:10px;font-weight:700;color:rgba(201,149,106,0.7);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;">How it works</div>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <div style="font-size:12px;color:rgba(245,237,228,0.55);display:flex;align-items:flex-start;gap:8px;"><span class="role-badge-admin" style="flex-shrink:0;margin-top:1px;">Admin</span>Full access — add, edit, delete everything + manage roles. Your own account is always protected as admin.</div>
+              <div style="font-size:12px;color:rgba(245,237,228,0.55);display:flex;align-items:flex-start;gap:8px;"><span class="role-badge-staff" style="flex-shrink:0;margin-top:1px;">Staff</span>Can add &amp; edit categories and products. Cannot add/edit catalogues, cannot delete anything, and cannot manage roles.</div>
+              <div style="font-size:11px;color:rgba(245,237,228,0.3);margin-top:4px;">If the email already exists in Firebase Auth, the password field is ignored and only the role is updated. If it's a new email, a Firebase account will be created with that password.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Roles list -->
+        <div id="list-roles" style="background:rgba(255,255,255,0.025);border:1px solid rgba(201,149,106,0.12);border-radius:16px;overflow:hidden;"></div>
+      </div>
+
     </div>
   </div>
 </div>
@@ -1446,19 +1555,6 @@
 <style>
   #adminTrigger{position:fixed;bottom:22px;right:22px;z-index:999;width:44px;height:44px;border-radius:50%;background:rgba(14,8,10,0.8);border:1px solid rgba(201,149,106,0.18);color:rgba(201,149,106,0.32);font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s;backdrop-filter:blur(10px);}
   #adminTrigger:hover{border-color:rgba(201,149,106,0.5);color:rgba(201,149,106,0.8);transform:scale(1.1);}
-  .admin-form{background:rgba(255,255,255,0.03);border:1px solid rgba(201,149,106,0.18);border-radius:16px;padding:24px;margin-bottom:22px;}
-  .flbl{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(201,149,106,0.8);display:block;margin-bottom:7px;}
-  .finput{width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(201,149,106,0.18);border-radius:9px;padding:11px 13px;color:#F5EDE4;font-size:13px;outline:none;font-family:'DM Sans',sans-serif;}
-  .finput:focus{border-color:rgba(201,149,106,0.5);}
-  select.finput option{background:#1a0c10;color:#F5EDE4;}
-  .dropzone{border:2px dashed rgba(201,149,106,0.25);border-radius:12px;padding:24px;text-align:center;cursor:pointer;transition:all 0.2s;background:rgba(255,255,255,0.02);}
-  .dropzone:hover{border-color:rgba(201,149,106,0.55);background:rgba(201,149,106,0.04);}
-  .dz-inner{color:rgba(201,149,106,0.7);font-size:13px;font-weight:500;}
-  .form-msg{padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:12px;text-align:center;}
-  .btn-save{background:linear-gradient(135deg,#7A4A2E,#C9956A);color:#0E080A;border:none;border-radius:9px;padding:11px 26px;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;}
-  .btn-cancel{background:rgba(255,255,255,0.05);border:1px solid rgba(201,149,106,0.2);color:rgba(245,237,228,0.5);border-radius:9px;padding:11px 20px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;}
-  .admin-card{background:rgba(255,255,255,0.035);border:1px solid rgba(201,149,106,0.18);border-radius:14px;overflow:hidden;transition:all 0.3s;}
-  .admin-card:hover{border-color:rgba(201,149,106,0.35);transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,0.4);}
 
   /* ── Offer Zone styles ── */
   .offer-badge {
@@ -1526,6 +1622,7 @@
     appId: "1:106610824120:web:171d47a29320499ca2754d",
     measurementId: "G-H5YRD220RZ"
   };
+  window._firebaseConfig = firebaseConfig;
 
   const app = initializeApp(firebaseConfig);
   getAnalytics(app);
@@ -1802,6 +1899,9 @@
   // ADMIN - Save document
   // ════════════════════════════════════════
   window.saveDoc = async function(type) {
+    if (window._currentUserRole === 'staff' && type === 'catalogue') {
+      alert('Only admins can add or edit catalogues.'); return;
+    }
     const { db, collection, addDoc, doc, setDoc } = window._fb;
     let name, data, colName, editId;
 
@@ -1868,6 +1968,7 @@
 
   // ── Delete doc ──
   window.deleteDoc2 = async function(colName, id) {
+    if (window._currentUserRole === 'staff') { alert('Staff accounts are view-only. Contact an admin.'); return; }
     if (!confirm('Delete this item? This cannot be undone.')) return;
     const { db, doc, deleteDoc } = window._fb;
     try { await deleteDoc(doc(db, colName, id)); loadAll(); }
@@ -1877,6 +1978,7 @@
   // ── Render admin lists ──
   window.renderAdminLists = function() {
     const { catalogues, categories, products } = window._cache;
+    const isStaff = window._currentUserRole === 'staff';
 
     // --- Catalogues list ---
     const lc = document.getElementById('list-catalogue');
@@ -1892,8 +1994,11 @@
         <div style="padding:14px;">
           <div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:700;color:#E8C9A0;margin-bottom:10px;">${c.name}</div>
           <div style="display:flex;gap:7px;">
-            <button onclick="editItem('catalogue','${c.id}')" style="flex:1;background:rgba(201,149,106,0.1);border:1px solid rgba(201,149,106,0.2);color:rgba(201,149,106,0.8);border-radius:7px;padding:7px;font-size:10px;font-weight:700;cursor:pointer;">Edit</button>
-            <button onclick="deleteDoc2('catalogues','${c.id}')" style="background:rgba(139,26,46,0.15);border:1px solid rgba(139,26,46,0.3);color:#ff8a8a;border-radius:7px;padding:7px 10px;font-size:11px;cursor:pointer;">🗑</button>
+            ${isStaff
+              ? `<div style="font-size:10px;color:rgba(245,237,228,0.25);padding:4px 8px;">Admin only</div>`
+              : `<button onclick="editItem('catalogue','${c.id}')" style="flex:1;background:rgba(201,149,106,0.1);border:1px solid rgba(201,149,106,0.2);color:rgba(201,149,106,0.8);border-radius:7px;padding:7px;font-size:10px;font-weight:700;cursor:pointer;">Edit</button>
+                 <button onclick="deleteDoc2('catalogues','${c.id}')" style="background:rgba(139,26,46,0.15);border:1px solid rgba(139,26,46,0.3);color:#ff8a8a;border-radius:7px;padding:7px 10px;font-size:11px;cursor:pointer;">🗑</button>`
+            }
           </div>
         </div>`;
       lc.appendChild(card);
@@ -1916,7 +2021,7 @@
           <div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:700;color:#E8C9A0;margin-bottom:10px;">${c.name}</div>
           <div style="display:flex;gap:7px;">
             <button onclick="editItem('category','${c.id}')" style="flex:1;background:rgba(201,149,106,0.1);border:1px solid rgba(201,149,106,0.2);color:rgba(201,149,106,0.8);border-radius:7px;padding:7px;font-size:10px;font-weight:700;cursor:pointer;">Edit</button>
-            <button onclick="deleteDoc2('categories','${c.id}')" style="background:rgba(139,26,46,0.15);border:1px solid rgba(139,26,46,0.3);color:#ff8a8a;border-radius:7px;padding:7px 10px;font-size:11px;cursor:pointer;">🗑</button>
+            ${!isStaff ? `<button onclick="deleteDoc2('categories','${c.id}')" style="background:rgba(139,26,46,0.15);border:1px solid rgba(139,26,46,0.3);color:#ff8a8a;border-radius:7px;padding:7px 10px;font-size:11px;cursor:pointer;">🗑</button>` : ''}
           </div>
         </div>`;
       lct.appendChild(card);
@@ -1968,6 +2073,7 @@
     const catId    = document.getElementById('filter-prod-cat')?.value;
     const subCatId = document.getElementById('filter-prod-subcat')?.value;
     const { products, categories, catalogues } = window._cache;
+    const isStaff  = window._currentUserRole === 'staff';
     const list = document.getElementById('list-product');
     const filtered = products.filter(p =>
       (!catId    || p.catalogueId === catId) &&
@@ -1982,7 +2088,7 @@
       const cat  = catalogues.find(x=>x.id===p.catalogueId);
       const subcat = categories.find(x=>x.id===p.categoryId);
       const row = document.createElement('div');
-      row.style.cssText = 'padding:14px 18px;border-bottom:1px solid rgba(201,149,106,0.07);display:flex;align-items:center;gap:14px;transition:background 0.2s;';
+      row.style.cssText = 'padding:14px 18px;border-bottom:1px solid rgba(201,149,106,0.07);display:flex;align-items:center;gap:14px;transition:background 0.2s;flex-wrap:wrap;';
       row.onmouseover = () => row.style.background='rgba(201,149,106,0.04)';
       row.onmouseout  = () => row.style.background='';
       row.innerHTML = `
@@ -1996,10 +2102,10 @@
           (p.regularPrice ? `<div style="font-size:11px;color:rgba(201,149,106,0.5);margin-top:2px;">₹${Number(p.regularPrice).toLocaleString('en-IN')}</div>` : '')}
         </div>
         <button onclick="editItem('product','${p.id}')" style="background:rgba(201,149,106,0.1);border:1px solid rgba(201,149,106,0.2);color:rgba(201,149,106,0.8);border-radius:7px;padding:7px 12px;font-size:10px;font-weight:700;cursor:pointer;white-space:nowrap;">Edit</button>
-        <button onclick="shareProductOnWhatsApp('${p.id}')" title="Share on WhatsApp" style="background:rgba(18,140,126,0.15);border:1px solid rgba(37,211,102,0.35);color:#25D366;border-radius:7px;padding:7px 10px;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;" title="Share on WhatsApp">
+        <button onclick="shareProductOnWhatsApp('${p.id}')" title="Share on WhatsApp" style="background:rgba(18,140,126,0.15);border:1px solid rgba(37,211,102,0.35);color:#25D366;border-radius:7px;padding:7px 10px;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.858L.057 23.504a.5.5 0 0 0 .609.61l5.76-1.512A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.806 9.806 0 0 1-5.031-1.383l-.36-.214-3.733.979.997-3.648-.234-.374A9.789 9.789 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
         </button>
-        <button onclick="deleteDoc2('products','${p.id}')" style="background:rgba(139,26,46,0.15);border:1px solid rgba(139,26,46,0.3);color:#ff8a8a;border-radius:7px;padding:7px 10px;font-size:11px;cursor:pointer;">🗑</button>`;
+        ${!isStaff ? `<button onclick="deleteDoc2('products','${p.id}')" style="background:rgba(139,26,46,0.15);border:1px solid rgba(139,26,46,0.3);color:#ff8a8a;border-radius:7px;padding:7px 10px;font-size:11px;cursor:pointer;">🗑</button>` : ''}`;
       list.appendChild(row);
     });
   };
@@ -2054,10 +2160,206 @@
     }
   };
 
+  // ── Role helpers ──
+  window._currentUserRole = null; // 'admin' | 'staff' | null
+
+  async function fetchUserRole(email) {
+    const { db, collection, getDocs, query, where } = window._fb;
+    try {
+      const q = query(collection(db, 'roles'), where('email', '==', email));
+      const snap = await getDocs(q);
+      if (!snap.empty) return snap.docs[0].data().role || 'staff';
+    } catch(e) { /* fallback */ }
+    return null; // no role doc = check if first-ever login (fallback admin check)
+  }
+
+  function applyRoleUI(role) {
+    window._currentUserRole = role;
+    const isAdmin = (role === 'admin');
+    const isStaff = (role === 'staff');
+
+    // Role pill in navbar
+    const pill = document.getElementById('adminRolePill');
+    if (pill) {
+      pill.innerHTML = isAdmin
+        ? '<span class="role-badge-admin">⭐ Admin</span>'
+        : '<span class="role-badge-staff">👤 Staff</span>';
+      pill.style.display = 'inline';
+    }
+
+    // Show Roles tab only for admin
+    const rolesTab = document.getElementById('atab-roles');
+    if (rolesTab) rolesTab.style.display = isAdmin ? '' : 'none';
+
+    // Show/hide staff notice banner
+    const notice = document.getElementById('staff-notice');
+    if (notice) notice.style.display = isStaff ? 'flex' : 'none';
+
+    // Catalogue add: admin only
+    const btnCat = document.getElementById('btn-add-catalogue');
+    if (btnCat) btnCat.style.display = isAdmin ? '' : 'none';
+
+    // Category + product add: both admin and staff
+    ['btn-add-category','btn-add-product'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = '';
+    });
+  }
+
+  // renderAdminLists is defined later; role-based button visibility is handled inside it
+
+  // ── Roles tab: render list ──
+  window.renderRolesList = async function() {
+    const { db, collection, getDocs } = window._fb;
+    const list = document.getElementById('list-roles');
+    if (!list) return;
+    list.innerHTML = '<div style="padding:24px;text-align:center;color:rgba(245,237,228,0.3);">Loading…</div>';
+    try {
+      const snap = await getDocs(collection(db, 'roles'));
+      if (snap.empty) {
+        list.innerHTML = '<div style="padding:32px;text-align:center;color:rgba(245,237,228,0.3);">No roles assigned yet.</div>';
+        return;
+      }
+      list.innerHTML = '';
+      const currentEmail = window._fb.auth.currentUser?.email?.toLowerCase();
+      snap.docs.forEach(d => {
+        const { email, role } = d.data();
+        const isSelf = email?.toLowerCase() === currentEmail;
+        const row = document.createElement('div');
+        row.className = 'role-row';
+        row.innerHTML = `
+          <div style="font-size:18px;">${role === 'admin' ? '⭐' : '👤'}</div>
+          <div style="flex:1;min-width:0;">
+            <div style="font-size:13px;color:#F5EDE4;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${email}${isSelf ? ' <span style="font-size:10px;color:rgba(201,149,106,0.6);">(you)</span>' : ''}</div>
+          </div>
+          <span class="${role === 'admin' ? 'role-badge-admin' : 'role-badge-staff'}">${role === 'admin' ? 'Admin' : 'Staff'}</span>
+          ${isSelf
+            ? `<span style="font-size:11px;color:rgba(245,237,228,0.25);padding:6px 10px;">🔒 Protected</span>`
+            : `<button onclick="changeRole('${d.id}','${email}','${role === 'admin' ? 'staff' : 'admin'}')"
+                style="background:rgba(201,149,106,0.1);border:1px solid rgba(201,149,106,0.2);color:rgba(201,149,106,0.8);border-radius:7px;padding:6px 12px;font-size:10px;font-weight:700;cursor:pointer;white-space:nowrap;">
+                Switch to ${role === 'admin' ? 'Staff' : 'Admin'}
+              </button>
+              <button onclick="removeRole('${d.id}')"
+                style="background:rgba(139,26,46,0.15);border:1px solid rgba(139,26,46,0.3);color:#ff8a8a;border-radius:7px;padding:6px 10px;font-size:12px;cursor:pointer;">🗑</button>`
+          }`;
+        list.appendChild(row);
+      });
+    } catch(e) {
+      list.innerHTML = `<div style="padding:24px;color:#ff8a8a;text-align:center;">Error: ${e.message}</div>`;
+    }
+  };
+
+  window.assignRole = async function() {
+    const email  = document.getElementById('role-email-input').value.trim().toLowerCase();
+    const pass   = document.getElementById('role-pass-input').value;
+    const role   = document.getElementById('role-select-input').value;
+    if (!email) { showRoleMsg('Enter an email address.', 'error'); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showRoleMsg('Enter a valid email.', 'error'); return; }
+
+    const { db, collection, getDocs, addDoc, setDoc, doc, query, where } = window._fb;
+    showRoleMsg('Saving…', 'success');
+    try {
+      // Check if role doc already exists
+      const q = query(collection(db,'roles'), where('email','==',email));
+      const snap = await getDocs(q);
+
+      if (!snap.empty) {
+        // Existing role — just update it (password ignored, user already exists)
+        await setDoc(doc(db,'roles',snap.docs[0].id), { email, role });
+        showRoleMsg(`✅ Role updated to "${role}" for ${email}`, 'success');
+      } else {
+        // New role doc
+        await addDoc(collection(db,'roles'), { email, role });
+        if (pass && pass.length >= 6) {
+          // Try creating the Firebase Auth user via Admin SDK isn't available client-side
+          // Instead: tell admin the account was role-assigned, they can use Firebase Console or
+          // we attempt createUserWithEmailAndPassword in a secondary auth instance
+          try {
+            const { getAuth: getSecondaryAuth, createUserWithEmailAndPassword: createUser } =
+              await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js");
+            const { initializeApp: initSecondary } =
+              await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js");
+            const secondaryApp = initSecondary(window._firebaseConfig, 'secondary-' + Date.now());
+            const secondaryAuth = getSecondaryAuth(secondaryApp);
+            await createUser(secondaryAuth, email, pass);
+            await secondaryAuth.signOut();
+            showRoleMsg(`✅ Account created & role "${role}" assigned to ${email}`, 'success');
+          } catch(authErr) {
+            if (authErr.code === 'auth/email-already-in-use') {
+              showRoleMsg(`✅ Role "${role}" assigned to ${email} (account already exists — password unchanged)`, 'success');
+            } else {
+              showRoleMsg(`✅ Role saved. Note: Could not auto-create account (${authErr.message}). User can reset password via Firebase.`, 'success');
+            }
+          }
+        } else if (pass && pass.length < 6) {
+          showRoleMsg('Password must be at least 6 characters.', 'error');
+          return;
+        } else {
+          showRoleMsg(`✅ Role "${role}" assigned to ${email}. (No password given — user must already have an account.)`, 'success');
+        }
+      }
+      document.getElementById('role-email-input').value = '';
+      document.getElementById('role-pass-input').value = '';
+      renderRolesList();
+    } catch(e) { showRoleMsg('Error: '+e.message, 'error'); }
+  };
+
+  window.toggleRolePassVis = function() {
+    const inp = document.getElementById('role-pass-input');
+    const eye = document.getElementById('role-pass-eye');
+    if (inp.type === 'password') { inp.type = 'text'; eye.textContent = '🙈'; }
+    else { inp.type = 'password'; eye.textContent = '👁'; }
+  };
+
+  window.changeRole = async function(docId, email, newRole) {
+    const currentEmail = window._fb.auth.currentUser?.email?.toLowerCase();
+    if (email?.toLowerCase() === currentEmail) {
+      alert('You cannot change your own role.'); return;
+    }
+    const { db, setDoc, doc } = window._fb;
+    try {
+      await setDoc(doc(db,'roles',docId), { email, role: newRole });
+      renderRolesList();
+    } catch(e) { alert('Error: '+e.message); }
+  };
+
+  window.removeRole = async function(docId) {
+    const currentEmail = window._fb.auth.currentUser?.email?.toLowerCase();
+    // Find the row email before confirming
+    if (!confirm('Remove this role? The user will no longer have admin panel access.')) return;
+    const { db, deleteDoc, doc } = window._fb;
+    try { await deleteDoc(doc(db,'roles',docId)); renderRolesList(); }
+    catch(e) { alert('Error: '+e.message); }
+  };
+
+  function showRoleMsg(m, type) {
+    const el = document.getElementById('msg-roles');
+    if (!el) return;
+    el.textContent = m;
+    el.style.display = 'block';
+    el.style.background = type === 'error' ? 'rgba(139,26,46,0.25)' : 'rgba(201,149,106,0.1)';
+    el.style.border = type === 'error' ? '1px solid rgba(139,26,46,0.5)' : '1px solid rgba(201,149,106,0.25)';
+    el.style.color = type === 'error' ? '#ff8a8a' : '#C9956A';
+  }
+
   // ── Auth ──
-  onAuthStateChanged(auth, user => {
+  onAuthStateChanged(auth, async user => {
     if (user) {
       document.getElementById('adminUserLabel').textContent = user.email;
+
+      // Fetch role from Firestore
+      let role = await fetchUserRole(user.email);
+
+      if (!role) {
+        // No role doc for this user — auto-assign admin and save it
+        const { db, collection, addDoc, getDocs } = window._fb;
+        role = 'admin';
+        try {
+          await addDoc(collection(db,'roles'), { email: user.email.toLowerCase(), role: 'admin' });
+        } catch(e) { /* ignore */ }
+      }
+
+      applyRoleUI(role);
       loadAll();
     }
   });
@@ -2139,7 +2441,6 @@
     try {
       const {auth,signInWithEmailAndPassword} = window._fb;
       await signInWithEmailAndPassword(auth, email, pass);
-      // Save credentials for auto-login next time
       localStorage.setItem('ufe_admin_creds', JSON.stringify({email, pass}));
       closeAdminLogin();
       document.getElementById('adminPanel').style.display='block';
@@ -2159,18 +2460,24 @@
   async function adminLogout(){
     const {auth,signOut}=window._fb;
     await signOut(auth);
+    window._currentUserRole = null;
+    localStorage.removeItem('ufe_admin_creds');
     document.getElementById('adminPanel').style.display='none';
     document.body.style.overflow='';
   }
 
   // ── Admin tabs ──
   function aTab(t) {
-    ['catalogue','category','product'].forEach(x => {
-      document.getElementById('apanel-'+x).style.display = x===t?'block':'none';
-      const btn = document.getElementById('atab-'+x);
-      btn.style.background = x===t ? 'linear-gradient(135deg,rgba(201,149,106,0.2),rgba(201,149,106,0.08))' : 'transparent';
-      btn.style.color = x===t ? '#E8C9A0' : 'rgba(245,237,228,0.4)';
+    ['catalogue','category','product','roles'].forEach(x => {
+      const panel = document.getElementById('apanel-'+x);
+      const btn   = document.getElementById('atab-'+x);
+      if (panel) panel.style.display = x===t ? 'block' : 'none';
+      if (btn) {
+        btn.style.background = x===t ? 'linear-gradient(135deg,rgba(201,149,106,0.2),rgba(201,149,106,0.08))' : 'transparent';
+        btn.style.color = x===t ? '#E8C9A0' : 'rgba(245,237,228,0.4)';
+      }
     });
+    if (t === 'roles') renderRolesList();
   }
 
   // ── Forms ──
@@ -2356,23 +2663,51 @@
       <textarea id="wa-msg-preview" rows="6" oninput="syncWaBubbleText()" style="width:100%;background:rgba(37,211,102,0.03);border:1px solid rgba(37,211,102,0.18);border-radius:10px;padding:11px 13px;color:#F5EDE4;font-size:12.5px;line-height:1.65;outline:none;resize:vertical;font-family:'DM Sans',sans-serif;" onfocus="this.style.borderColor='rgba(37,211,102,0.45)'" onblur="this.style.borderColor='rgba(37,211,102,0.18)'"></textarea>
     </div>
 
-    <!-- Phone number -->
+    <!-- Send Target Choice -->
     <div style="margin-bottom:20px;">
-      <label style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(201,149,106,0.8);display:block;margin-bottom:7px;">📱 Send to Number (optional)</label>
-      <div style="position:relative;">
-        <span style="position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:13px;color:rgba(245,237,228,0.4);pointer-events:none;">+91</span>
-        <input id="wa-phone" type="tel" placeholder="9876543210 — or leave blank to pick any chat" maxlength="15"
-          style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(201,149,106,0.18);border-radius:9px;padding:11px 13px 11px 42px;color:#F5EDE4;font-size:13px;outline:none;font-family:'DM Sans',sans-serif;"
-          onfocus="this.style.borderColor='rgba(37,211,102,0.4)'" onblur="this.style.borderColor='rgba(201,149,106,0.18)'"/>
+      <label style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(201,149,106,0.8);display:block;margin-bottom:10px;">📤 Send To</label>
+
+      <!-- Toggle Tabs -->
+      <div style="display:flex;gap:8px;margin-bottom:14px;">
+        <button id="wa-tab-number" onclick="waSelectTab('number')"
+          style="flex:1;padding:9px 12px;border-radius:8px;border:1px solid rgba(37,211,102,0.5);background:rgba(37,211,102,0.12);color:#25D366;font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;cursor:pointer;transition:all 0.2s;">
+          📱 Phone Number
+        </button>
+        <button id="wa-tab-channel" onclick="waSelectTab('channel')"
+          style="flex:1;padding:9px 12px;border-radius:8px;border:1px solid rgba(201,149,106,0.2);background:rgba(255,255,255,0.03);color:rgba(245,237,228,0.45);font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;cursor:pointer;transition:all 0.2s;">
+          📢 Our Channel
+        </button>
       </div>
-      <div style="font-size:10px;color:rgba(245,237,228,0.25);margin-top:5px;">Leave blank → WhatsApp opens, you choose contact / group / community</div>
+
+      <!-- Phone number panel -->
+      <div id="wa-panel-number">
+        <div style="position:relative;">
+          <span style="position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:13px;color:rgba(245,237,228,0.4);pointer-events:none;">+91</span>
+          <input id="wa-phone" type="tel" placeholder="9876543210 — or leave blank to pick any chat" maxlength="15"
+            style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(201,149,106,0.18);border-radius:9px;padding:11px 13px 11px 42px;color:#F5EDE4;font-size:13px;outline:none;font-family:'DM Sans',sans-serif;"
+            onfocus="this.style.borderColor='rgba(37,211,102,0.4)'" onblur="this.style.borderColor='rgba(201,149,106,0.18)'"/>
+        </div>
+        <div style="font-size:10px;color:rgba(245,237,228,0.25);margin-top:5px;">Leave blank → WhatsApp opens, you choose contact / group</div>
+      </div>
+
+      <!-- Channel panel -->
+      <div id="wa-panel-channel" style="display:none;">
+        <div style="display:flex;align-items:center;gap:12px;background:rgba(37,211,102,0.06);border:1px solid rgba(37,211,102,0.22);border-radius:10px;padding:12px 14px;">
+          <div style="width:38px;height:38px;border-radius:10px;background:rgba(37,211,102,0.15);border:1px solid rgba(37,211,102,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px;">📢</div>
+          <div>
+            <div style="font-size:13px;font-weight:700;color:#E8C9A0;margin-bottom:2px;">Usha Furniture & Electronics</div>
+            <div style="font-size:10px;color:rgba(37,211,102,0.8);letter-spacing:0.5px;">WhatsApp Channel</div>
+          </div>
+        </div>
+        <div style="font-size:10px;color:rgba(245,237,228,0.25);margin-top:7px;">⚠️ WhatsApp Channels don't support direct image upload via link. The image will be <strong style="color:rgba(245,237,228,0.5);">downloaded</strong> — open the channel and post it manually.</div>
+      </div>
     </div>
 
     <!-- Buttons -->
     <div style="display:flex;gap:10px;">
       <button id="wa-main-btn" onclick="doWhatsAppShare()" style="flex:1;background:linear-gradient(135deg,#128C7E,#25D366);color:#fff;border:none;border-radius:11px;padding:14px 20px;font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px;box-shadow:0 4px 24px rgba(37,211,102,0.28);">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.858L.057 23.504a.5.5 0 0 0 .609.61l5.76-1.512A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.806 9.806 0 0 1-5.031-1.383l-.36-.214-3.733.979.997-3.648-.234-.374A9.789 9.789 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
-        <span id="wa-main-btn-label">Send on WhatsApp</span>
+        <span id="wa-main-btn-label">📸 Share as One Image</span>
       </button>
       <button onclick="closeWaModal()" style="background:rgba(255,255,255,0.05);border:1px solid rgba(201,149,106,0.2);color:rgba(245,237,228,0.5);border-radius:11px;padding:14px 20px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">Cancel</button>
     </div>
@@ -2406,163 +2741,337 @@
     if (window._waProduct) _rebuildCanvasPreview(window._waProduct, val);
   };
 
-  // ── Word-wrap a string into lines that fit within maxW ──────────
-  function _wrapWords(ctx, text, maxW) {
-    if (!text.trim()) return [''];
+  // ══════════════════════════════════════════════════════════════
+  //  PREMIUM CANVAS BUILDER — Beautiful WhatsApp product card
+  // ══════════════════════════════════════════════════════════════
+
+  function _wrapText(ctx, text, maxW) {
     const words = text.split(' ');
-    const lines = [];
-    let current = '';
-    for (const word of words) {
-      const test = current ? current + ' ' + word : word;
-      if (ctx.measureText(test).width > maxW && current) {
-        lines.push(current);
-        current = word;
-      } else {
-        current = test;
-      }
+    const lines = []; let cur = '';
+    for (const w of words) {
+      const test = cur ? cur + ' ' + w : w;
+      if (ctx.measureText(test).width > maxW && cur) { lines.push(cur); cur = w; }
+      else cur = test;
     }
-    if (current) lines.push(current);
+    if (cur) lines.push(cur);
     return lines.length ? lines : [text];
   }
 
-  // ── Parse one raw message line → style metadata ──────────────────
-  function _lineStyle(raw, isFirst, FONT_SIZE, textColor, goldColor, dimColor) {
-    const plain    = raw.replace(/\*/g,'').replace(/~~/g,'').replace(/^_(.*)_$/, '$1');
-    const isBold   = raw.includes('*');
-    const isStrike = raw.includes('~~');
-    const isItalic = /^_.*_$/.test(raw.trim());
-    const isPriceLine = raw.includes('Price:') || raw.includes('₹');
-    const isDivider   = /^─{5,}/.test(plain.trim());
-
-    let color = textColor, fontSize = FONT_SIZE, fontStyle = 'normal', fontWeight = 'normal';
-    if (isFirst)                       { color = goldColor;   fontSize = FONT_SIZE + 3; fontWeight = 'bold'; }
-    else if (isBold && isPriceLine)    { color = '#7ef07e';   fontSize = FONT_SIZE + 1; fontWeight = 'bold'; }
-    else if (isBold)                   { color = textColor;   fontWeight = 'bold'; }
-    else if (isStrike)                 { color = dimColor; }
-    else if (isItalic)                 { color = dimColor;    fontStyle = 'italic'; }
-
-    return { plain, isBold, isStrike, isItalic, isDivider, color, fontSize, fontStyle, fontWeight };
+  function _roundRect(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.lineTo(x + w - r, y);
+    ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+    ctx.lineTo(x + w, y + h - r);
+    ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    ctx.lineTo(x + r, y + h);
+    ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+    ctx.lineTo(x, y + r);
+    ctx.quadraticCurveTo(x, y, x + r, y);
+    ctx.closePath();
   }
 
-  // ── Measure total text-panel height (with wrapping) ─────────────
-  function _measureTextBlock(rawLines, W, PAD, FONT_SIZE, LINE_H) {
-    const measCanvas = document.createElement('canvas');
-    measCanvas.width = W;
-    const mCtx = measCanvas.getContext('2d');
-    const maxW = W - PAD * 2;
-    let h = PAD;
-    rawLines.forEach((raw, i) => {
-      const plain = raw.replace(/\*/g,'').replace(/~~/g,'').replace(/^_(.*)_$/, '$1');
-      if (plain.trim() === '') { h += LINE_H * 0.5; return; }
-      const isDivider = /^─{5,}/.test(plain.trim());
-      if (isDivider) { h += LINE_H * 0.65; return; }
-      const isBold = raw.includes('*');
-      const isFirst = i === 0;
-      const fs = isFirst ? FONT_SIZE + 3 : (isBold && (raw.includes('Price:') || raw.includes('₹'))) ? FONT_SIZE + 1 : FONT_SIZE;
-      mCtx.font = `${isBold || isFirst ? 'bold' : 'normal'} ${fs}px Arial, sans-serif`;
-      const wrapped = _wrapWords(mCtx, plain, maxW);
-      h += wrapped.length * LINE_H;
-    });
-    h += PAD + 8;
-    return h;
-  }
+  // Parse the structured message into data fields
+  function _parseProductMsg(msgText) {
+    const lines = msgText.split('\n').map(l => l.trim()).filter(Boolean);
+    let shopName = '', productName = '', category = '', tag = '';
+    let price = '', mrp = '', saveText = '', offerValid = '', description = '', location = '';
 
-  // ── Draw all text lines onto ctx with wrapping ───────────────────
-  function _drawTextBlock(ctx, rawLines, W, startY, FONT_SIZE, LINE_H, textColor, goldColor, dimColor) {
-    const PAD  = 32;
-    const maxW = W - PAD * 2;
-    let y = startY;
-
-    rawLines.forEach((raw, i) => {
-      const s = _lineStyle(raw, i === 0, FONT_SIZE, textColor, goldColor, dimColor);
-
-      if (raw.replace(/\*/g,'').replace(/~~/g,'').replace(/^_(.*)_$/, '$1').trim() === '') {
-        y += LINE_H * 0.5;
-        return;
+    lines.forEach(line => {
+      const clean = line.replace(/[*~_]/g, '').replace(/^[🏪📦🏷️✨💰🔥⏰📝📍📞─\s]+/, '').trim();
+      if (line.includes('🏪')) shopName = clean;
+      else if (line.includes('📦')) productName = clean;
+      else if (line.includes('🏷️')) category = clean;
+      else if (line.includes('✨')) tag = clean;
+      else if (line.includes('💰') && line.includes('Price:')) {
+        const m = line.match(/₹([\d,]+)/); if (m) price = '₹' + m[1];
       }
-
-      if (s.isDivider) {
-        ctx.strokeStyle = 'rgba(232,255,232,0.22)';
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.moveTo(PAD, y + LINE_H * 0.3);
-        ctx.lineTo(W - PAD, y + LINE_H * 0.3);
-        ctx.stroke();
-        y += LINE_H * 0.65;
-        return;
+      else if (line.includes('~~') && line.includes('MRP')) {
+        const m = line.match(/₹([\d,]+)/); if (m) mrp = '₹' + m[1];
+        const s = line.match(/Save\s+(\d+%)/i); if (s) saveText = s[1];
       }
-
-      ctx.font = `${s.fontStyle} ${s.fontWeight} ${s.fontSize}px Arial, sans-serif`;
-      const wrapped = _wrapWords(ctx, s.plain, maxW);
-
-      wrapped.forEach((wline, wi) => {
-        ctx.fillStyle = s.color;
-        ctx.fillText(wline, PAD, y + s.fontSize);
-
-        if (s.isStrike) {
-          const tw = ctx.measureText(wline).width;
-          ctx.strokeStyle = dimColor;
-          ctx.lineWidth = 1.5;
-          ctx.beginPath();
-          ctx.moveTo(PAD, y + s.fontSize * 0.6);
-          ctx.lineTo(PAD + tw, y + s.fontSize * 0.6);
-          ctx.stroke();
-        }
-
-        y += LINE_H;
-      });
+      else if (line.includes('⏰')) offerValid = clean.replace(/^Offer valid\s*/i,'');
+      else if (line.includes('📝')) description = clean;
+      else if (line.includes('📍')) location = clean;
     });
+
+    return { shopName, productName, category, tag, price, mrp, saveText, offerValid, description, location };
   }
 
-  // ── Build the merged canvas: product image on top, text panel below ──
+  // ── Build the premium merged canvas ──────────────────────────────
   function _buildMergedCanvas(imgBase64, msgText) {
     return new Promise(resolve => {
-      const W         = 800;
-      const PAD       = 32;
-      const FONT_SIZE = 22;
-      const LINE_H    = 36;
-      const shopGreen = '#1a3c2a';
-      const textColor = '#e8ffe8';
-      const goldColor = '#f0c060';
-      const dimColor  = 'rgba(232,255,232,0.55)';
+      const W = 900;
+      const data = _parseProductMsg(msgText);
 
-      const rawLines   = msgText.split('\n');
-      const textBlockH = _measureTextBlock(rawLines, W, PAD, FONT_SIZE, LINE_H);
+      // ── Colours ──
+      const BG_TOP    = '#0d1f13';
+      const BG_MID    = '#102318';
+      const BG_BOT    = '#0a1810';
+      const GOLD      = '#D4A848';
+      const GOLD2     = '#F0C86A';
+      const WHITE     = '#FFFFFF';
+      const GREEN_LT  = '#A8F0B8';
+      const GREEN_DIM = 'rgba(168,240,184,0.55)';
+      const RED_OFF   = '#FF6B6B';
+      const CARD_BG   = 'rgba(255,255,255,0.04)';
 
-      const _render = (canvas, imgOffsetY) => {
+      const _drawCard = (canvas, imgH) => {
         const ctx = canvas.getContext('2d');
-        ctx.fillStyle = shopGreen;
-        ctx.fillRect(0, imgOffsetY, W, textBlockH);
+        const H   = canvas.height;
+        const PAD = 48;
+        const IW  = W - PAD * 2;   // inner width
 
-        // Gold separator
-        ctx.strokeStyle = goldColor;
-        ctx.lineWidth = 2;
+        // ── Background gradient ──
+        const bgGrad = ctx.createLinearGradient(0, imgH, 0, H);
+        bgGrad.addColorStop(0,   BG_TOP);
+        bgGrad.addColorStop(0.4, BG_MID);
+        bgGrad.addColorStop(1,   BG_BOT);
+        ctx.fillStyle = bgGrad;
+        ctx.fillRect(0, imgH, W, H - imgH);
+
+        // Subtle radial glow top-center
+        const glow = ctx.createRadialGradient(W/2, imgH + 60, 0, W/2, imgH + 60, 320);
+        glow.addColorStop(0,   'rgba(80,200,120,0.10)');
+        glow.addColorStop(1,   'transparent');
+        ctx.fillStyle = glow;
+        ctx.fillRect(0, imgH, W, H - imgH);
+
+        // ── Gold top border ──
+        const borderGrad = ctx.createLinearGradient(0, 0, W, 0);
+        borderGrad.addColorStop(0,    'transparent');
+        borderGrad.addColorStop(0.2,  GOLD);
+        borderGrad.addColorStop(0.5,  GOLD2);
+        borderGrad.addColorStop(0.8,  GOLD);
+        borderGrad.addColorStop(1,    'transparent');
+        ctx.strokeStyle = borderGrad;
+        ctx.lineWidth = 3;
         ctx.beginPath();
-        ctx.moveTo(0, imgOffsetY + 1);
-        ctx.lineTo(W, imgOffsetY + 1);
+        ctx.moveTo(0, imgH + 1.5);
+        ctx.lineTo(W, imgH + 1.5);
         ctx.stroke();
 
-        _drawTextBlock(ctx, rawLines, W, imgOffsetY + PAD, FONT_SIZE, LINE_H, textColor, goldColor, dimColor);
-        resolve(canvas.toDataURL('image/jpeg', 0.92));
+        let y = imgH + 36;
+
+        // ── Shop name header ──
+        if (data.shopName) {
+          ctx.font = 'bold 28px Georgia, serif';
+          const shopW = ctx.measureText(data.shopName).width;
+          // Underline glow behind shop name
+          const shopGlow = ctx.createLinearGradient((W - shopW)/2 - 20, 0, (W + shopW)/2 + 20, 0);
+          shopGlow.addColorStop(0, 'transparent');
+          shopGlow.addColorStop(0.5, 'rgba(212,168,72,0.18)');
+          shopGlow.addColorStop(1, 'transparent');
+          ctx.fillStyle = shopGlow;
+          ctx.fillRect((W - shopW)/2 - 20, y - 6, shopW + 40, 40);
+
+          ctx.fillStyle = GOLD2;
+          ctx.textAlign = 'center';
+          ctx.fillText('🏪 ' + data.shopName, W/2, y + 22);
+          y += 52;
+
+          // Thin divider
+          const div1 = ctx.createLinearGradient(0, 0, W, 0);
+          div1.addColorStop(0,   'transparent');
+          div1.addColorStop(0.3, 'rgba(212,168,72,0.4)');
+          div1.addColorStop(0.7, 'rgba(212,168,72,0.4)');
+          div1.addColorStop(1,   'transparent');
+          ctx.strokeStyle = div1;
+          ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.moveTo(PAD, y); ctx.lineTo(W - PAD, y); ctx.stroke();
+          y += 28;
+        }
+
+        // ── Product name ──
+        if (data.productName) {
+          ctx.font = 'bold 34px Georgia, serif';
+          ctx.fillStyle = WHITE;
+          ctx.textAlign = 'center';
+          const pLines = _wrapText(ctx, data.productName, IW);
+          pLines.forEach(line => {
+            ctx.fillText(line, W/2, y + 28);
+            y += 42;
+          });
+          y += 8;
+        }
+
+        // ── Category & Tag pills ──
+        const pills = [];
+        if (data.category) pills.push({ text: '🏷 ' + data.category, bg: 'rgba(212,168,72,0.15)', border: 'rgba(212,168,72,0.4)', color: GOLD2 });
+        if (data.tag)      pills.push({ text: '✨ ' + data.tag,      bg: 'rgba(168,240,184,0.08)', border: 'rgba(168,240,184,0.3)', color: GREEN_LT });
+
+        if (pills.length) {
+          ctx.font = '500 20px Arial, sans-serif';
+          const pillH = 38, pillPadX = 20, gap = 14;
+          const pillWidths = pills.map(p => ctx.measureText(p.text).width + pillPadX * 2);
+          const totalW = pillWidths.reduce((a, b) => a + b, 0) + gap * (pills.length - 1);
+          let px = (W - totalW) / 2;
+          pills.forEach((pill, i) => {
+            const pw = pillWidths[i];
+            _roundRect(ctx, px, y, pw, pillH, pillH/2);
+            ctx.fillStyle = pill.bg; ctx.fill();
+            ctx.strokeStyle = pill.border; ctx.lineWidth = 1; ctx.stroke();
+            ctx.fillStyle = pill.color;
+            ctx.textAlign = 'left';
+            ctx.fillText(pill.text, px + pillPadX, y + 26);
+            px += pw + gap;
+          });
+          y += pillH + 22;
+        }
+
+        // ── Price section card ──
+        if (data.price) {
+          const cardH = data.mrp ? 120 : 82;
+          _roundRect(ctx, PAD, y, IW, cardH, 16);
+          const cardGrad = ctx.createLinearGradient(PAD, y, PAD + IW, y + cardH);
+          cardGrad.addColorStop(0, 'rgba(60,180,90,0.12)');
+          cardGrad.addColorStop(1, 'rgba(30,100,50,0.08)');
+          ctx.fillStyle = cardGrad; ctx.fill();
+          ctx.strokeStyle = 'rgba(100,220,130,0.25)'; ctx.lineWidth = 1.5; ctx.stroke();
+
+          if (data.saveText) {
+            // OFFER badge
+            const badgeW = 130, badgeH = 34;
+            _roundRect(ctx, W - PAD - badgeW, y + 14, badgeW, badgeH, 8);
+            const bGrad = ctx.createLinearGradient(W - PAD - badgeW, y, W - PAD, y + badgeH);
+            bGrad.addColorStop(0, '#c0392b'); bGrad.addColorStop(1, '#e74c3c');
+            ctx.fillStyle = bGrad; ctx.fill();
+            ctx.font = 'bold 17px Arial, sans-serif';
+            ctx.fillStyle = WHITE; ctx.textAlign = 'center';
+            ctx.fillText('🔥 SAVE ' + data.saveText, W - PAD - badgeW/2, y + 37);
+          }
+
+          // Main price
+          ctx.font = 'bold 46px Georgia, serif';
+          const priceGrad = ctx.createLinearGradient(PAD + 24, y, PAD + 250, y + 50);
+          priceGrad.addColorStop(0, '#6ef07e'); priceGrad.addColorStop(1, '#a8f0b8');
+          ctx.fillStyle = priceGrad;
+          ctx.textAlign = 'left';
+          ctx.fillText(data.price, PAD + 24, y + 56);
+
+          if (data.mrp) {
+            // MRP strikethrough
+            ctx.font = '500 22px Arial, sans-serif';
+            ctx.fillStyle = GREEN_DIM;
+            ctx.fillText('MRP ' + data.mrp, PAD + 24, y + 90);
+            const mrpW = ctx.measureText('MRP ' + data.mrp).width;
+            ctx.strokeStyle = RED_OFF; ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(PAD + 24, y + 76);
+            ctx.lineTo(PAD + 24 + mrpW, y + 76);
+            ctx.stroke();
+          }
+          y += cardH + 18;
+        }
+
+        // ── Offer validity ──
+        if (data.offerValid) {
+          _roundRect(ctx, PAD, y, IW, 44, 10);
+          ctx.fillStyle = 'rgba(255,200,80,0.07)'; ctx.fill();
+          ctx.strokeStyle = 'rgba(255,200,80,0.25)'; ctx.lineWidth = 1; ctx.stroke();
+          ctx.font = '500 20px Arial, sans-serif';
+          ctx.fillStyle = '#FFD580'; ctx.textAlign = 'center';
+          ctx.fillText('⏰  Offer valid ' + data.offerValid, W/2, y + 29);
+          y += 58;
+        }
+
+        // ── Description ──
+        if (data.description) {
+          ctx.font = 'italic 21px Georgia, serif';
+          ctx.fillStyle = GREEN_DIM;
+          ctx.textAlign = 'center';
+          const dLines = _wrapText(ctx, '📝 ' + data.description, IW);
+          dLines.forEach(line => { ctx.fillText(line, W/2, y + 22); y += 30; });
+          y += 8;
+        }
+
+        // ── Bottom divider ──
+        y += 10;
+        const div2 = ctx.createLinearGradient(0, 0, W, 0);
+        div2.addColorStop(0,   'transparent');
+        div2.addColorStop(0.3, 'rgba(212,168,72,0.35)');
+        div2.addColorStop(0.7, 'rgba(212,168,72,0.35)');
+        div2.addColorStop(1,   'transparent');
+        ctx.strokeStyle = div2; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(PAD, y); ctx.lineTo(W - PAD, y); ctx.stroke();
+        y += 22;
+
+        // ── Location + contact row ──
+        ctx.font = '500 20px Arial, sans-serif';
+        ctx.textAlign = 'center';
+        const footerY = y + 22;
+        if (data.location) {
+          ctx.fillStyle = GREEN_DIM;
+          ctx.fillText('📍 ' + data.location + '   📞 Contact us for more details!', W/2, footerY);
+          y += 36;
+        }
+
+        // ── Tagline ──
+        y += 8;
+        ctx.font = 'italic bold 20px Georgia, serif';
+        ctx.fillStyle = GOLD;
+        ctx.textAlign = 'center';
+        ctx.fillText('Usha Furniture & Electronics – Quality you can trust 🛋️', W/2, y + 20);
+        y += 44;
+
+        resolve(canvas.toDataURL('image/jpeg', 0.94));
       };
 
       if (!imgBase64) {
+        // Text-only card: estimate height
+        const tmpC = document.createElement('canvas');
+        tmpC.width = W; tmpC.height = 10;
+        const tCtx = tmpC.getContext('2d');
+        let estH = 60; // top pad
+        if (data.shopName)     estH += 80;
+        if (data.productName)  { tCtx.font = 'bold 34px Georgia,serif'; estH += _wrapText(tCtx, data.productName, W - 96).length * 42 + 16; }
+        if (data.category || data.tag) estH += 60;
+        if (data.price)        estH += data.mrp ? 138 : 100;
+        if (data.offerValid)   estH += 58;
+        if (data.description)  estH += 60;
+        estH += 120; // footer
         const canvas = document.createElement('canvas');
-        canvas.width  = W;
-        canvas.height = textBlockH;
-        _render(canvas, 0);
+        canvas.width = W; canvas.height = estH;
+        _drawCard(canvas, 0);
         return;
       }
 
       const img = new Image();
       img.onload = () => {
-        const imgH = Math.round((img.height / img.width) * W);
+        // Fit image: max height 520px, maintain aspect
+        const maxImgH = 520;
+        let imgH = Math.round((img.height / img.width) * W);
+        if (imgH > maxImgH) imgH = maxImgH;
+
+        // Draw image portion
+        const tmpC = document.createElement('canvas');
+        tmpC.width = W; tmpC.height = 10;
+        const tCtx = tmpC.getContext('2d');
+        let estTextH = 60;
+        if (data.shopName)     estTextH += 80;
+        if (data.productName)  { tCtx.font = 'bold 34px Georgia,serif'; estTextH += _wrapText(tCtx, data.productName, W - 96).length * 42 + 16; }
+        if (data.category || data.tag) estTextH += 60;
+        if (data.price)        estTextH += data.mrp ? 138 : 100;
+        if (data.offerValid)   estTextH += 58;
+        if (data.description)  estTextH += 60;
+        estTextH += 130;
+
         const canvas = document.createElement('canvas');
         canvas.width  = W;
-        canvas.height = imgH + textBlockH;
+        canvas.height = imgH + estTextH;
         const ctx = canvas.getContext('2d');
-        ctx.drawImage(img, 0, 0, W, imgH);
-        _render(canvas, imgH);
+
+        // White image background
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, W, imgH);
+
+        // Draw image centered/cropped to fit
+        const scale = Math.max(W / img.width, imgH / img.height);
+        const dw = img.width * scale, dh = img.height * scale;
+        const dx = (W - dw) / 2, dy = (imgH - dh) / 2;
+        ctx.drawImage(img, dx, dy, dw, dh);
+
+        _drawCard(canvas, imgH);
       };
       img.onerror = () => resolve(null);
       img.src = imgBase64;
@@ -2625,6 +3134,7 @@
     }
     window._waProduct = product;
     window._waMergedBase64 = null;
+    window._waTab = 'number';
     _buildWaModal(product);
     document.getElementById('waShareModal').style.display = 'flex';
     document.body.style.overflow = 'hidden';
@@ -2688,9 +3198,12 @@
   }
 
   // ── Main send button ───────────────────────────────────────────
+  const WA_CHANNEL_URL = 'https://whatsapp.com/channel/0029VbCXJ51ISTkNrQ2cbh2P';
+
   window.doWhatsAppShare = async function() {
     const p   = window._waProduct;
     const msg = document.getElementById('wa-msg-preview').value.trim();
+    const tab = window._waTab || 'number';
 
     // Get merged image (canvas with text baked in)
     let mergedBase64 = window._waMergedBase64;
@@ -2698,8 +3211,22 @@
       mergedBase64 = await _buildMergedCanvas(p?.imageBase64 || null, msg);
     }
 
+    // ── CHANNEL MODE ──────────────────────────────────────────────
+    // We skip Web Share API entirely — it shows the contacts picker.
+    // Instead: download the merged image, then open the channel directly.
+    if (tab === 'channel') {
+      const safeName = (p?.name || 'product').replace(/[^a-zA-Z0-9]/g, '_');
+      if (mergedBase64) {
+        _downloadAndOpenChannel(mergedBase64, safeName);
+      } else {
+        window.open(WA_CHANNEL_URL, '_blank');
+        closeWaModal();
+      }
+      return;
+    }
+
+    // ── NUMBER MODE ───────────────────────────────────────────────
     if (!mergedBase64) {
-      // No image at all — text only fallback
       _fallbackTextOnly(msg);
       return;
     }
@@ -2707,8 +3234,6 @@
     const safeName = (p?.name || 'product').replace(/[^a-zA-Z0-9]/g, '_');
     const imgFile  = dataURLtoFile(mergedBase64, safeName + '.jpg');
 
-    // Try Web Share API (mobile) — shares ONE image file, no caption needed
-    // because the caption text is already drawn into the image itself
     if (navigator.canShare && navigator.canShare({ files: [imgFile] })) {
       navigator.share({ files: [imgFile] })
         .then(() => closeWaModal())
@@ -2716,10 +3241,27 @@
           if (err.name !== 'AbortError') _downloadMerged(mergedBase64, safeName);
         });
     } else {
-      // Desktop: download the merged image
       _downloadMerged(mergedBase64, safeName);
     }
   };
+
+  function _downloadAndOpenChannel(base64, safeName) {
+    // Download the image
+    const a = document.createElement('a');
+    a.href = base64;
+    a.download = safeName + '_whatsapp.jpg';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    // Show instruction pill
+    const pill = document.getElementById('wa-status-pill');
+    pill.className = 'wa-status-pill wa-status-amber';
+    pill.innerHTML = '⬇️ Image saved! Your channel is opening — tap ➕ in the channel → attach this image → post.';
+    pill.style.display = 'inline-flex';
+    // Open the channel after a brief delay
+    setTimeout(() => {
+      window.open(WA_CHANNEL_URL, '_blank');
+      closeWaModal();
+    }, 1800);
+  }
 
   function _downloadMerged(base64, safeName) {
     const a = document.createElement('a');
@@ -2743,9 +3285,49 @@
     closeWaModal();
   }
 
+  // ── Tab switching: Number vs Channel ───────────────────────────
+  window._waTab = 'number'; // default
+
+  window.waSelectTab = function(tab) {
+    window._waTab = tab;
+    const tabNumber  = document.getElementById('wa-tab-number');
+    const tabChannel = document.getElementById('wa-tab-channel');
+    const panelNum   = document.getElementById('wa-panel-number');
+    const panelChan  = document.getElementById('wa-panel-channel');
+    const btnLabel   = document.getElementById('wa-main-btn-label');
+
+    if (tab === 'number') {
+      // Active style for number tab
+      tabNumber.style.borderColor  = 'rgba(37,211,102,0.5)';
+      tabNumber.style.background   = 'rgba(37,211,102,0.12)';
+      tabNumber.style.color        = '#25D366';
+      // Inactive style for channel tab
+      tabChannel.style.borderColor = 'rgba(201,149,106,0.2)';
+      tabChannel.style.background  = 'rgba(255,255,255,0.03)';
+      tabChannel.style.color       = 'rgba(245,237,228,0.45)';
+      panelNum.style.display   = 'block';
+      panelChan.style.display  = 'none';
+      btnLabel.textContent = '📸 Share as One Image';
+    } else {
+      // Active style for channel tab
+      tabChannel.style.borderColor = 'rgba(37,211,102,0.5)';
+      tabChannel.style.background  = 'rgba(37,211,102,0.12)';
+      tabChannel.style.color       = '#25D366';
+      // Inactive style for number tab
+      tabNumber.style.borderColor  = 'rgba(201,149,106,0.2)';
+      tabNumber.style.background   = 'rgba(255,255,255,0.03)';
+      tabNumber.style.color        = 'rgba(245,237,228,0.45)';
+      panelNum.style.display   = 'none';
+      panelChan.style.display  = 'block';
+      btnLabel.textContent = '📢 Post to Channel';
+    }
+  };
+
   window.closeWaModal = function() {
     document.getElementById('waShareModal').style.display = 'none';
     document.body.style.overflow = 'hidden';
+    // Reset tab to number on close
+    waSelectTab('number');
   };
 
   document.getElementById('waShareModal').addEventListener('click', function(e) {
